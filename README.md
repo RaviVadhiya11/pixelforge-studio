@@ -1,34 +1,43 @@
 # PixelForge Studio
 
-A responsive, browser-based image workspace with a premium dark interface.
+A responsive, browser-based image and PDF utility platform with an original clean interface.
 
-## Live preview
-After enabling GitHub Pages, visit:
+## Live site
+After GitHub Pages is enabled:
 https://RaviVadhiya11.github.io/pixelforge-studio/
 
-## Current features
-- Batch image selection and processing
-- Convert to JPG/JPEG, PNG, WebP and AVIF where the browser supports AVIF encoding
-- Image compression with adjustable output quality
-- Resize presets for Instagram square, portrait, Stories/Reels, Full HD, 4K UHD, 8K UHD and custom dimensions
-- Optional light sharpening after resizing
-- Download processed files individually
-- AI background removal through the optional @imgly browser model (first run downloads model assets)
-- Images to PDF
+## Image tools
+- Compress images with adjustable output quality
+- Resize by percentage, pixel width, social presets, Full HD, 4K, 8K and custom dimensions
+- Crop by X/Y position and pixel width/height
+- Convert to JPG/JPEG, PNG, WebP and AVIF where supported
+- 2×, 3× and 4× browser-based image enlargement
+- Rotate and flip
+- Text watermark with opacity and position controls
+- Blur a rectangular area to hide private details
+- Meme captions
+- Batch processing for supported image operations
+- AI-assisted background removal through an optional in-browser model
+
+## PDF tools
+- Combine images into a PDF
 - Merge multiple PDFs
-- PDF pages to JPG (up to 30 pages per run)
-- PDF re-save/optimization attempt
-- 2×/4× high-quality browser resampling upscaler (not AI super-resolution)
-- Responsive mobile and desktop layout
-- Local browser processing; images are not sent to a PixelForge server
+- Render PDF pages to JPG (up to 30 pages per run)
+- Re-save/optimize PDF structure
 
-## Advanced tools and limitations
-Background removal loads a third-party model from jsDelivr and may be slow or fail on unsupported browsers, low-memory phones, or restricted networks. PDF utilities load pdf-lib/PDF.js from public CDNs when used. PDF re-saving does not guarantee smaller files. PDF-to-JPG is limited to 30 pages per run for mobile memory safety. The 2×/4× upscaler uses browser interpolation, not a trained AI model; it does not restore missing detail.
+## Format support
+Image decoding is controlled by the user's browser. JPG, PNG, WebP and many GIF/SVG/BMP/AVIF files are commonly supported, but HEIC/HEIF and TIFF decoding is not guaranteed. Output formats are JPG, PNG, WebP and AVIF only when the browser encoder supports it. Animated GIFs are not preserved as animation.
 
-## Format notes and limitations
-The browser must be able to decode an input format before it can be processed. JPG, PNG, WebP and many GIF/SVG/BMP/AVIF files are commonly supported, but support varies by browser and device. HEIC/HEIF and TIFF decoding is not guaranteed. Animated GIFs are not preserved as animation. Export is currently JPG, PNG, WebP and AVIF only when the browser encoder supports it.
+## Important technical limitations
+- 4K/8K resize and 2×/3×/4× upscale use browser resampling, not AI super-resolution. They cannot reconstruct missing image detail.
+- Background removal loads an open-source model from jsDelivr. First use downloads model files; it may be slow or fail on unsupported browsers, low-memory phones or restricted networks.
+- PDF tools load pdf-lib and PDF.js from public CDNs. Large files can use substantial memory.
+- PDF re-saving does not guarantee a smaller file or recompress every embedded image.
+- Blur tool masks one rectangular region per image; inspect output before sharing sensitive images.
+- Very large batch jobs can exceed available mobile memory.
 
-4K/8K output changes pixel dimensions using browser resampling; it is not AI super-resolution and cannot recreate missing detail. Very large images may exceed a phone's available memory. Use smaller dimensions on low-memory devices.
+## Privacy
+Image processing is performed in the browser where supported. Selected files are not uploaded to a PixelForge server by the image tools. Third-party library/model assets are fetched from CDNs when the relevant tools are used. Review the Privacy Policy and update it to match your actual deployment and analytics/ad configuration.
 
 ## Publish on GitHub Pages
 1. Open repository Settings → Pages.
@@ -37,10 +46,13 @@ The browser must be able to decode an input format before it can be processed. J
 4. Save and wait for GitHub Pages to publish.
 
 ## Monetization
-No advertising, payment processor, subscription, or revenue system is configured in this project. Monetization requires separate account setup and approval (for example, an ad network), a suitable privacy policy/contact details, compliance with platform policies, and real visitors. Revenue is not guaranteed.
+No ads, subscription billing, payment gateway, or revenue tracking is configured. Monetization requires separate setup and approval (for example, an ad network), accurate legal/contact information, compliance with provider policies, and real traffic. Revenue is not guaranteed. Do not add an ads.txt file until an ad provider gives you the exact publisher details.
 
-## Legal pages
-Update the contact email placeholders in `privacy.html` and `terms.html` before public launch. Review the policies for your actual use and local legal requirements.
+## Before public launch
+- Replace the contact email placeholders in `privacy.html` and `terms.html`.
+- Review legal pages for your actual data practices, analytics and ad providers.
+- Test every tool on the target browsers and phones.
+- Confirm GitHub Pages is enabled and the live site loads over HTTPS.
 
-## Tech
-Static HTML, CSS and JavaScript. No build step or server is required for the image workspace.
+## Technology
+Static HTML, CSS and JavaScript. No build step or backend server is required for the core browser tools.
