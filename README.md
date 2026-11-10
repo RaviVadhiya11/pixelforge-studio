@@ -1,25 +1,37 @@
 # PixelForge Studio
 
-A mobile-friendly, browser-based creative tools website.
+A responsive, browser-based image workspace with a premium dark interface.
 
-## Tools
-- Image conversion (PNG, JPG, WebP; AVIF depends on browser support)
-- Image resizing presets for social media, passport-style dimensions, 4K and 8K canvas sizes
-- Background removal using a third-party browser library/model (internet and device support required)
-- PDF merge and basic PDF optimization
+## Live preview
+After enabling GitHub Pages, visit:
+https://RaviVadhiya11.github.io/pixelforge-studio/
 
-## Deploy on GitHub Pages
-1. Open **Settings → Pages**.
-2. Choose **Deploy from a branch**.
-3. Select **main** and **/(root)**, then Save.
-4. Your site URL: https://RaviVadhiya11.github.io/pixelforge-studio/
+## Current features
+- Batch image selection and processing
+- Convert to JPG/JPEG, PNG, WebP and AVIF where the browser supports AVIF encoding
+- Image compression with adjustable output quality
+- Resize presets for Instagram square, portrait, Stories/Reels, Full HD, 4K UHD, 8K UHD and custom dimensions
+- Optional light sharpening after resizing
+- Download processed files individually
+- Responsive mobile and desktop layout
+- Local browser processing; images are not sent to a PixelForge server
 
-## Important limitations
-- 4K/8K presets resize/interpolate pixels; they are not AI super-resolution and do not recover missing detail.
-- Format support depends on the browser and device. GIF conversion may export only a still frame.
-- PDF optimization may not reduce every file's size.
-- Background-removal libraries/models may be large and require internet access.
-- GitHub Pages is static hosting. Login, database, payment processing, subscriptions, and ad revenue are not configured.
-- Review and personalize Privacy Policy and Terms before adding analytics, ads, uploads, or payments. Replace the contact-email placeholder.
+## Format notes and limitations
+The browser must be able to decode an input format before it can be processed. JPG, PNG, WebP and many GIF/SVG/BMP/AVIF files are commonly supported, but support varies by browser and device. HEIC/HEIF and TIFF decoding is not guaranteed. Animated GIFs are not preserved as animation. Export is currently JPG, PNG, WebP and AVIF only when the browser encoder supports it.
 
-No income is guaranteed. Use lawful content and real traffic.
+4K/8K output changes pixel dimensions using browser resampling; it is not AI super-resolution and cannot recreate missing detail. Very large images may exceed a phone's available memory. Use smaller dimensions on low-memory devices.
+
+## Publish on GitHub Pages
+1. Open repository Settings → Pages.
+2. Under Build and deployment, choose Deploy from a branch.
+3. Select branch `main` and folder `/(root)`.
+4. Save and wait for GitHub Pages to publish.
+
+## Monetization
+No advertising, payment processor, subscription, or revenue system is configured in this project. Monetization requires separate account setup and approval (for example, an ad network), a suitable privacy policy/contact details, compliance with platform policies, and real visitors. Revenue is not guaranteed.
+
+## Legal pages
+Update the contact email placeholders in `privacy.html` and `terms.html` before public launch. Review the policies for your actual use and local legal requirements.
+
+## Tech
+Static HTML, CSS and JavaScript. No build step or server is required for the image workspace.
