@@ -139,7 +139,7 @@ else if(activeTool==='pdfjpg'){await loadLib('https://cdnjs.cloudflare.com/ajax/
 else if(activeTool==='pdfopt'){await loadLib('https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js','pdflib');const doc=await PDFLib.PDFDocument.load(await picked[0].arrayBuffer()),b=await doc.save({useObjectStreams:true});download(new Blob([b],{type:'application/pdf'}),picked[0].name.replace(/\.pdf$/i,'')+'_optimized.pdf');done=1}
 else{for(let i=0;i<picked.length;i++){try{const out=await processImage(picked[i]);download(out.blob,out.name);done++}catch(e){errors.push(picked[i].name+': '+e.message)}$('progress').style.width=Math.round((i+1)/picked.length*100)+'%';$('status').textContent='Processed '+(i+1)+' / '+picked.length;await new Promise(r=>setTimeout(r,80))}}
 $('progress').style.width='100%';$('status').textContent=done+' output(s) created.'+(errors.length?' '+errors.join(' | '):' Downloads started.');}
-catch(e){$('status').textContent='Could not complete: '+e.message}
+catch(e){$('status').textContent='Could not complete: '+e.message;if(activeTool==='background'){$('removeBgNow').disabled=false;$('removeBgNow').textContent='Try Remove Background Again ✦';$('bgPreviewTitle').textContent='Background removal failed';$('bgPreviewStatus').textContent='Please check your internet connection and try again. '+e.message}}
 finally{btn.disabled=false}
 }
 document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.toolcard').forEach(c=>c.hidden=b.dataset.filter!=='all'&&c.dataset.cat!==b.dataset.filter)});
