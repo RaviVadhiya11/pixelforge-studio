@@ -125,6 +125,30 @@ function extOf(t){return ({'image/jpeg':'jpg','image/png':'png','image/webp':'we
 function canvasFor(im,w,h,fill=true){const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.imageSmoothingEnabled=true;x.imageSmoothingQuality='high';if(fill){x.fillStyle='#fff';x.fillRect(0,0,w,h)}return [c,x]}
 async function processImage(file){
 const im=await loadImg(file);let w=im.naturalWidth,h=im.naturalHeight,c,x,sx=0,sy=0,sw=im.naturalWidth,sh=im.naturalHeight,t=outputType(),q=Number($('quality')?.value||90)/100;
+if(activeTool==='resize'){
+const p=$('preset').value;
+if(p==='50'||p==='75'){w=Math.max(1,Math.round(im.naturalWidth*Number(p)/100));h=Math.max(1,Math.round(im.naturalHeight*Number(p)/100))}
+else if(p==='1080'){w=1080;h=Math.max(1,Math.round(im.naturalHeight*1080/im.naturalWidth))}
+else if(p==='instagram'){w=1080;h=1080}
+else if(p==='story'){w=1080;h=1920}
+else if(p==='hd'){w=1920;h=1080}
+else if(p==='4k'){w=3840;h=2160}
+else if(p==='8k'){w=7680;h=4320}
+else if(p==='custom'){w=Math.round(Number($('rw').value));h=Math.round(Number($('rh').value))}
+if(!Number.isFinite(w)||!Number.isFinite(h)||w<1||h<1||w>10000||h>10000)throw Error('Please enter valid width and height between 1 and 10000 pixels.');
+if(w*h>45000000)throw Error('This output is too large for your phone. Choose a smaller size.');
+if($('ratio').checked&&p!=='50'&&p!=='75'&&p!=='original'){
+const targetRatio=w/h,sourceRatio=im.naturalWidth/im.naturalHeight;
+if(sourceRatio>targetRatio){sh=im.naturalHeight;sw=sh*targetRatio;sx=(im.naturalWidth-sw)/2}
+else{sw=im.naturalWidth;sh=sw/targetRatio;sy=(im.naturalHeight-sh)/2}
+}
+[c,x]=canvasFor(im,w,h,t!=='image/png');
+if($('ratio').checked&&p!=='50'&&p!=='75'&&p!=='original')x.drawImage(im,sx,sy,sw,sh,0,0,w,h);
+else x.drawImage(im,0,0,w,h);
+const blob=await blobOf(c,t,t==='image/png'?undefined:q);
+const base=file.name.replace(/\\.[^.]+$/,'').replace(/[^\\w-]+/g,'_');
+return {blob,name:base+'_resized.'+extOf(t)}
+}
 if(activeTool==='crop'){const sx=Math.max(0,Number($('cx').value)),sy=Math.max(0,Number($('cy').value)),cw=Math.min(Number($('cw').value),im.width-sx),ch=Math.min(Number($('ch').value),im.height-sy);if(cw<1||ch<1)throw Error('Crop dimensions are outside the image.');[c,x]=canvasFor(im,cw,ch,t!=='image/png');x.drawImage(im,sx,sy,cw,ch,0,0,cw,ch)}
 else{
 if(activeTool==='resize'){let p=$('preset').value;if(p==='50'||p==='75'){w=Math.round(w*Number(p)/100);h=Math.round(h*Number(p)/100)}else if(p==='1080'){h=Math.round(h*1080/w);w=1080}else if(p==='instagram'){w=1080;h=1080}else if(p==='story'){w=1080;h=1920}else if(p==='hd'){w=1920;h=1080}else if(p==='4k'){w=3840;h=2160}else if(p==='8k'){w=7680;h=4320}else if(p==='custom'){w=Number($('rw').value);h=Number($('rh').value)}if(!Number.isFinite(w)||!Number.isFinite(h)||w<1||h<1||w>10000||h>10000)throw Error('Dimensions must be between 1 and 10000 pixels.');if($('ratio').checked&&p!=='50'&&p!=='75'&&p!=='original'){const targetRatio=w/h,sourceRatio=im.naturalWidth/im.naturalHeight;if(sourceRatio>targetRatio){sh=im.naturalHeight;sw=Math.round(sh*targetRatio);sx=Math.round((im.naturalWidth-sw)/2)}else{sw=im.naturalWidth;sh=Math.round(sw/targetRatio);sy=Math.round((im.naturalHeight-sh)/2)}}}
