@@ -13,8 +13,17 @@ https://RaviVadhiya11.github.io/pixelforge-studio/
 - Resize presets for Instagram square, portrait, Stories/Reels, Full HD, 4K UHD, 8K UHD and custom dimensions
 - Optional light sharpening after resizing
 - Download processed files individually
+- AI background removal through the optional @imgly browser model (first run downloads model assets)
+- Images to PDF
+- Merge multiple PDFs
+- PDF pages to JPG (up to 30 pages per run)
+- PDF re-save/optimization attempt
+- 2×/4× high-quality browser resampling upscaler (not AI super-resolution)
 - Responsive mobile and desktop layout
 - Local browser processing; images are not sent to a PixelForge server
+
+## Advanced tools and limitations
+Background removal loads a third-party model from jsDelivr and may be slow or fail on unsupported browsers, low-memory phones, or restricted networks. PDF utilities load pdf-lib/PDF.js from public CDNs when used. PDF re-saving does not guarantee smaller files. PDF-to-JPG is limited to 30 pages per run for mobile memory safety. The 2×/4× upscaler uses browser interpolation, not a trained AI model; it does not restore missing detail.
 
 ## Format notes and limitations
 The browser must be able to decode an input format before it can be processed. JPG, PNG, WebP and many GIF/SVG/BMP/AVIF files are commonly supported, but support varies by browser and device. HEIC/HEIF and TIFF decoding is not guaranteed. Animated GIFs are not preserved as animation. Export is currently JPG, PNG, WebP and AVIF only when the browser encoder supports it.
