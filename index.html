@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f8fc">
-<meta name="description" content="PixelForge Studio — free online image compressor, converter, resizer, cropper, editor and PDF tools.">
-<title>PixelForge Studio — All Image Tools</title>
+<meta name="description" content="Free online image and PDF tools: remove image backgrounds, compress, resize, crop and convert JPG, PNG and WebP. Works in your browser.">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://ravidhiya11.github.io/pixelforge-studio/">
+<meta property="og:type" content="website"><meta property="og:title" content="PixelForge Studio — Free Online Image & PDF Tools"><meta property="og:description" content="Remove backgrounds, compress, resize and convert images online with free browser-based tools."><meta property="og:url" content="https://ravidhiya11.github.io/pixelforge-studio/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"PixelForge Studio","url":"https://ravidhiya11.github.io/pixelforge-studio/","description":"Free online image and PDF utilities."}</script>
+<title>PixelForge Studio — Free Online Image & PDF Tools</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f7f8fc;--white:#fff;--ink:#202337;--muted:#777e91;--line:#e8eaf1;--purple:#635bff;--purple2:#847cff;--soft:#f0efff;--green:#12a878;--shadow:0 8px 30px #252b4510}
@@ -67,8 +70,24 @@ footer{background:#fff;border-color:#e5e8f0;color:#777e91}
 <section id="formats"><div class="sectionhead"><div><h2>Supported image formats</h2><p>JPG, JPEG, PNG, WebP, GIF, BMP, SVG and AVIF are common formats. HEIC, TIFF, JXL, PSD and camera RAW require browser decoding support or conversion first.</p></div></div><div class="formats"><span>JPG / JPEG</span><span>PNG</span><span>WebP</span><span>AVIF*</span><span>GIF*</span><span>SVG*</span><span>BMP*</span><span>TIFF*</span><span>HEIC / HEIF*</span><span>JXL*</span><span>ICO / CUR*</span><span>PSD / AI / EPS*</span><span>RAW*</span><span>JP2*</span><span>TGA / DDS*</span></div></section>
 <section id="why"><div class="sectionhead"><div><h2>Why use PixelForge Studio?</h2><p>Useful tools with a simple workflow.</p></div></div><div class="why"><article><b>🔒 Privacy-first processing</b><p>Image tools run in your browser wherever possible. Files are not uploaded to a PixelForge server.</p></article><article><b>⚡ Simple and fast</b><p>No account is needed for the current browser tools. Choose a task, upload files and download the result.</p></article><article><b>📱 Works on mobile</b><p>Responsive interface for phones, tablets and desktop browsers. Very large files may need more memory.</p></article></div></section>
 <section id="faq"><div class="sectionhead"><div><h2>Frequently asked questions</h2></div></div><div class="faq"><article><h3>Are all tools free?</h3><p>The current tools are free to use. Future hosting, API services or optional premium features may have separate costs.</p></article><article><h3>Are my files uploaded?</h3><p>Most image tasks run locally in your browser. Background removal and PDF tools load libraries/model files from public CDNs, but the selected files are processed in the browser.</p></article><article><h3>Does 4× upscaling create AI detail?</h3><p>No. The upscaler enlarges pixels with browser interpolation. It is not AI super-resolution and cannot reconstruct missing details.</p></article><article><h3>Why might a format fail?</h3><p>Some formats such as HEIC, TIFF and AVIF are not supported by every browser. Use JPG, PNG or WebP for the broadest compatibility.</p></article></div></section>
+<section id="tool-pages"><div class="sectionhead"><div><h2>Explore individual tools</h2><p>Open a dedicated guide and workspace for each task.</p></div></div><div class="why">
+<article><a href="remove-background/"><b>Remove Background</b></a><p>Make a transparent PNG from a photo.</p></article>
+<article><a href="image-compressor/"><b>Image Compressor</b></a><p>Reduce JPG, PNG and WebP file size.</p></article>
+<article><a href="image-resizer/"><b>Image Resizer</b></a><p>Resize images to exact pixel dimensions.</p></article>
+<article><a href="image-converter/"><b>Image Converter</b></a><p>Convert images to JPG, PNG and WebP.</p></article>
+<article><a href="image-upscaler/"><b>Image Upscaler</b></a><p>Enlarge image dimensions in your browser.</p></article>
+<article><a href="image-cropper/"><b>Image Cropper</b></a><p>Crop images to focus on the subject.</p></article>
+<article><a href="rotate-image/"><b>Rotate Image</b></a><p>Rotate and flip image orientation.</p></article>
+<article><a href="add-watermark/"><b>Add Watermark</b></a><p>Add text watermark to images.</p></article>
+<article><a href="blur-image/"><b>Blur Image Area</b></a><p>Blur a selected area of an image.</p></article>
+<article><a href="meme-generator/"><b>Meme Generator</b></a><p>Create a meme using your own image.</p></article>
+<article><a href="image-to-pdf/"><b>Image to PDF</b></a><p>Combine images into one PDF.</p></article>
+<article><a href="merge-pdf/"><b>Merge PDF</b></a><p>Combine multiple PDF files.</p></article>
+<article><a href="pdf-to-jpg/"><b>PDF to JPG</b></a><p>Convert PDF pages to images.</p></article>
+<article><a href="pdf-optimizer/"><b>Optimize PDF</b></a><p>Re-save a PDF document.</p></article>
+</div></section>
 </main>
-<footer><div class="wrap foot"><span>© <span id="year"></span> PixelForge Studio. All rights reserved.</span><span><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a></span></div></footer>
+<footer><div class="wrap foot"><span>© <span id="year"></span> PixelForge Studio. All rights reserved.</span><span><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a></span></div></footer>
 <script>
 const $=id=>document.getElementById(id);let activeTool='compress',picked=[],mode='image';
 const descriptions={
