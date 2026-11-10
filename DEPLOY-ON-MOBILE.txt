@@ -1,0 +1,15 @@
+PIXELFORGE STUDIO — MOBILE GUIDE
+
+Repository: https://github.com/RaviVadhiya11/pixelforge-studio
+Site URL after Pages is enabled: https://RaviVadhiya11.github.io/pixelforge-studio/
+
+1. Open repository Settings.
+2. Select Pages.
+3. Under Build and deployment choose Deploy from a branch.
+4. Branch: main; folder: /(root); press Save.
+5. Wait for the Pages deployment to finish, then open the site URL.
+
+The repository already contains index.html and website policy/support files.
+GitHub Pages is free static hosting. It does not configure payments, login, a database,
+server-side AI, or ad revenue. Check every tool on your phone after deployment.
+Personalize the contact email in privacy.html and terms.html before publishing.
