@@ -359,7 +359,7 @@ if(activeTool==='ai-generate'||activeTool==='ai-edit'){
   if(!file||!/^image\/(jpeg|png|webp)$/i.test(file.type))throw Error('Please select a JPG, PNG or WebP image.');
   if(file.size>12*1024*1024)throw Error('Choose an image smaller than 12 MB.');
   const im=await loadImg(file);
-  const scale=Math.min(1,512/Math.max(im.naturalWidth,im.naturalHeight));
+  const scale=Math.min(1,511/Math.max(im.naturalWidth,im.naturalHeight));
   const w=Math.max(1,Math.round(im.naturalWidth*scale)),h=Math.max(1,Math.round(im.naturalHeight*scale));
   const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
   canvas.getContext('2d').drawImage(im,0,0,w,h);
