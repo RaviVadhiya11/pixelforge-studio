@@ -47,11 +47,12 @@ a{color:#b9a5ff;text-decoration:none}.wrap{width:min(1120px,calc(100% - 30px));m
 <div class="actions"><button class="btn secondary" id="resetAdjust">Reset</button><button class="btn" id="downloadAdjust">Download edited image</button></div><p class="status" id="adjustStatus" role="status"></p></div>
 <div><h3>Live preview</h3><div class="preview" id="adjustPreview"><div class="empty"><b>Preview appears here</b>Upload an image to adjust it.</div></div></div></div>
 </section>
+<section class="card"><h3>Connect AI service</h3><p class="hint">Paste your deployed Cloudflare Worker URL here once setup is complete. This is a public endpoint URL, not your secret API token.</p><div class="field"><label for="apiBase">Cloudflare Worker URL</label><input id="apiBase" type="url" placeholder="https://pixelfire-ai.your-subdomain.workers.dev"></div><div class="actions"><button class="btn secondary" id="saveApi">Save connection</button><span class="small" id="apiSaved" role="status"></span></div></section>
 <div class="notice"><b>Free plan note:</b> AI generation and AI editing require a connected Cloudflare Workers AI backend. Its free allocation is limited and may run out. Photo Adjust works without an AI account. Your API credentials must stay on the backend, never in this page.</div>
 <div class="footer"><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a><p>© <span id="year"></span> PixelFire Studio</p></div>
 </div>
 <script>
-const API_BASE=''; // After deploying the Cloudflare Worker, set this to its HTTPS URL, e.g. https://pixelfire-ai.<your-subdomain>.workers.dev
+let API_BASE=localStorage.getItem('pixelfire_ai_api')||''; $('apiBase').value=API_BASE; $('saveApi').onclick=()=>{const v=$('apiBase').value.trim().replace(/\\/$/,'');if(v&&!/^https:\\/\\//i.test(v)){$('apiSaved').textContent='Please enter a valid HTTPS URL.';return;}API_BASE=v;localStorage.setItem('pixelfire_ai_api',v);$('apiSaved').textContent=v?'AI endpoint saved in this browser.':'AI endpoint cleared.';};
 const $=id=>document.getElementById(id);
 $('year').textContent=new Date().getFullYear();
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('hidden',x.id!=='panel-'+b.dataset.tab));}));
