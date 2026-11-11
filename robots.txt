@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ravidhiya11.github.io/pixelforge-studio/sitemap.xml
+Sitemap: https://pixelfirestudio.in/sitemap.xml
