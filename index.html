@@ -189,6 +189,11 @@ footer{background:#fff!important;border-color:#dcebe1!important;color:#64796d!im
 /* Use vivid native multicolor icons, not cloud-shaped icon backgrounds */
 .toolcard .toolicon:before{content:none!important;display:none!important}
 .toolcard .toolicon{background:transparent!important;color:inherit!important;border:0!important;box-shadow:none!important;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif!important;font-size:34px!important;line-height:1!important;border-radius:0!important;filter:none!important}
+
+/* Animated three-dot indicator while AI upscale is running */
+@keyframes pfUpscaleDots{0%,20%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}80%,100%{opacity:.35;transform:translateY(0)}}
+#upscaleNow:disabled{display:inline-flex;align-items:center;justify-content:center;gap:12px;opacity:.82;cursor:wait}
+#upscaleNow:disabled::after{content:"•••";display:inline-block;letter-spacing:3px;font-size:22px;line-height:1;animation:pfUpscaleDots .9s ease-in-out infinite}
 </style></head>
 <body>
 <header><div class="wrap nav"><button class="hamburger" id="menuOpen" type="button" aria-label="Open tools menu">☰</button><a class="brand" id="homeBrand" href="./" aria-label="PixelFire Studio home"><div class="logo">✦</div><span>PixelFire <em>Studio</em></span></a><nav class="navlinks"><a href="#all-tools">All tools</a><a href="#why">Why PixelFire</a><a href="#faq">FAQ</a></nav><div class="navright"><span class="tag">FREE ONLINE TOOLS</span><button class="btn alt auth-nav-btn" id="authOpen" type="button">Log in / Sign up</button><button class="btn auth-nav-btn" id="authProfile" type="button" hidden>My account</button></div></div></header>
