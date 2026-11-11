@@ -16,7 +16,7 @@ https://RaviVadhiya11.github.io/pixelforge-studio/
 - Text watermark with opacity and position controls
 - Blur a rectangular area to hide private details
 - Meme captions
-- Batch processing for supported image operations
+- Batch processing for rotate, watermark, blur and meme tools; single-file workflows are limited to one selected image at a time
 - AI-assisted background removal through an optional in-browser model
 
 ## PDF tools
@@ -37,7 +37,7 @@ Image decoding is controlled by the user's browser. JPG, PNG, WebP and many GIF/
 - Very large batch jobs can exceed available mobile memory.
 
 ## Privacy
-Image processing is performed in the browser where supported. Selected files are not uploaded to a PixelForge server by the image tools. Third-party library/model assets are fetched from CDNs when the relevant tools are used. Review the Privacy Policy and update it to match your actual deployment and analytics/ad configuration.
+Image and PDF processing is performed in the browser where supported. Selected files are not intentionally uploaded to a PixelForge-owned processing server by the tools. Optional sign-in uses Firebase Authentication, which processes account details such as email and authentication credentials. Third-party scripts, fonts, libraries and model assets are fetched from their providers. Read the Privacy Policy for details. No AdSense or analytics code is currently configured.
 
 ## Publish on GitHub Pages
 1. Open repository Settings → Pages.
@@ -49,8 +49,11 @@ Image processing is performed in the browser where supported. Selected files are
 No ads, subscription billing, payment gateway, or revenue tracking is configured. Monetization requires separate setup and approval (for example, an ad network), accurate legal/contact information, compliance with provider policies, and real traffic. Revenue is not guaranteed. Do not add an ads.txt file until an ad provider gives you the exact publisher details.
 
 ## Before public launch
-- Replace the contact email placeholders in `privacy.html` and `terms.html`.
-- Review legal pages for your actual data practices, analytics and ad providers.
+- Confirm the contact email in `privacy.html`, `terms.html` and `contact.html` is monitored.
+- Review legal pages against actual data practices, Firebase settings and any future ad providers.
+- Restrict the Firebase web API key to the required website domains in Google Cloud and configure Firebase Authentication authorized domains and Email/Password sign-in.
+- Add a custom domain only after choosing the exact domain; then update canonical URLs, Open Graph URLs, structured data, sitemap and robots.txt to that domain.
+- Add the exact `ads.txt` record and AdSense script only after Google AdSense provides your publisher ID and approves/configures the site.
 - Test every tool on the target browsers and phones.
 - Confirm GitHub Pages is enabled and the live site loads over HTTPS.
 
