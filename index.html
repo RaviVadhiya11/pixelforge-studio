@@ -201,10 +201,12 @@ $('year').textContent=new Date().getFullYear();
 <script>
 (function(){
 const firebaseConfig={
- apiKey:"PASTE_FIREBASE_API_KEY",
- authDomain:"PASTE_PROJECT_ID.firebaseapp.com",
- projectId:"PASTE_PROJECT_ID",
- appId:"PASTE_FIREBASE_APP_ID"
+ apiKey:"AIzaSyCy0q5BWK0-wiruFhMxbE_5RB2Egk8AjXE",
+ authDomain:"pixelforge-studio-78621.firebaseapp.com",
+ projectId:"pixelforge-studio-78621",
+ storageBucket:"pixelforge-studio-78621.firebasestorage.app",
+ messagingSenderId:"985843037591",
+ appId:"1:985843037591:web:467c99376f031bf3dcc0d2"
 };
 const configured=Object.values(firebaseConfig).every(v=>v&&!v.startsWith("PASTE_"));
 let auth=null,mode="login";
