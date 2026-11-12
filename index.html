@@ -465,7 +465,7 @@ if(activeTool==='vector'){
   let vb=(svgEl.getAttribute('viewBox')||'').trim().split(/[ ,]+/).map(Number),width=parseFloat(svgEl.getAttribute('width'))||0,height=parseFloat(svgEl.getAttribute('height'))||0;
   if(vb.length===4&&vb.every(Number.isFinite)&&vb[2]>0&&vb[3]>0){width=width||vb[2];height=height||vb[3]}else if(width>0&&height>0){svgEl.setAttribute('viewBox','0 0 '+width+' '+height)}else throw Error('SVG dimensions are missing. Save the SVG with width and height or a valid viewBox.');
   const ratio=width/height;if(!Number.isFinite(ratio)||ratio<=0)throw Error('SVG dimensions are invalid.');
-  const pageW=Math.min(1440,Math.max(72,width)),pageH=pageW/ratio;
+  let pageW=Math.min(1440,Math.max(72,width)),pageH=pageW/ratio;
   if(pageH>1440){const f=1440/pageH;pageH=1440;pageW*=f}
   svgEl.setAttribute('width',String(pageW));svgEl.setAttribute('height',String(pageH));
   const JsPDF=window.jspdf&&window.jspdf.jsPDF;if(!JsPDF)throw Error('PDF export library did not load. Please try again.');
