@@ -284,7 +284,7 @@ const fmt=[['image/jpeg','JPG / JPEG'],['image/png','PNG'],['image/webp','WebP']
 let s='';
 if(tool==='ai-generate')s+=field('Describe the image you want','aiPrompt','<textarea id="aiPrompt" rows="5" maxlength="1800" placeholder="Example: A beautiful cinematic sunset over the Rann of Kutch, ultra detailed, natural colours"></textarea>')+'<div class="info">Write a clear prompt. PixelFire AI will generate one image. Generation uses Cloudflare Workers AI and may be subject to usage limits.</div>';
 if(tool==='ai-edit')s+=field('Describe your photo edit','aiPrompt','<textarea id="aiPrompt" rows="5" maxlength="1800" placeholder="Example: Change the background to a peaceful garden at golden hour while keeping the main subject natural"></textarea>')+'<div class="info">Select one JPG or PNG photo, then describe the changes. For the current model, the image is resized to a maximum 512 × 512 pixels before editing.</div>';
-if(tool==='vector')s+='<div class="field"><label for="vectorDirection">Conversion</label>'+select('vectorDirection',[['to-svg','Image → SVG Vector'],['from-svg','SVG → PNG / JPG']])+'</div><div class="field"><label for="vectorFormat">Output format</label>'+select('vectorFormat',[['image/png','PNG (transparent background)'],['image/jpeg','JPG (white background)']])+'</div><div class="info"><b>Image → SVG:</b> Creates editable vector paths by colour tracing. Best for logos, icons and flat illustrations; photos may produce complex results. <b>SVG → PNG/JPG:</b> Rasterizes an SVG at up to 4096 px on its longest side.</div>';
+if(tool==='vector')s+='<div class="field"><label for="vectorDirection">Conversion</label>'+select('vectorDirection',[['to-svg','Image → SVG Vector'],['svg-pdf','SVG → PDF (Vector)'],['from-svg','SVG → PNG / JPG']])+'</div><div class="field" id="vectorFormatField"><label for="vectorFormat">Output format</label>'+select('vectorFormat',[['image/png','PNG (transparent background)'],['image/jpeg','JPG (white background)']])+'</div><div class="info"><b>Image → SVG:</b> Traces JPG/PNG/WebP into editable paths; best for logos and flat artwork. <b>SVG → PDF:</b> Exports SVG paths as a vector PDF (not a screenshot). <b>SVG → PNG/JPG:</b> Raster export up to 4096 px. EPS, DXF and direct AI export are not enabled yet; no fake vector files are produced.</div>';
 if(['compress','convert','resize','crop','upscale','rotate','watermark','blur','meme','imagebase64','imagegray','imagesepia','imageinvert','imagebw','imagepixelate'].includes(tool)){
  if(tool==='compress'||tool==='upscale')s+=field('Output format','outFormat',select('outFormat',fmt));
  if(tool==='convert')s+='<div class="convert-panel"><div class="convert-format-row"><div class="field"><label for="convertFrom">Convert from</label><select id="convertFrom" disabled><option>Auto detect from uploaded file</option></select></div><div class="convert-arrow">→</div><div class="field"><label for="outFormat">Convert to</label>'+select('outFormat',fmt)+'</div></div><div class="field"><label>Available output formats</label><div class="format-chips"><span>JPG</span><span>PNG</span><span>WebP</span><span>AVIF*</span></div></div><div class="info">Upload an image, choose the output format and tap Convert. JPG, PNG and WebP are supported by most modern browsers. AVIF depends on browser encoder support. Specialist formats such as PDF, TIFF, PSD, SVG, GIF, BMP and RAW need dedicated decoders and are not enabled in this browser-only converter.</div></div>';
@@ -453,7 +453,28 @@ const btn=$('runTool');btn.disabled=true;queuedDownloads=[];deferDownloads=['rot
 try{
 if(activeTool==='vector'){
  const file=picked[0],isSvg=/\.svgz?$/i.test(file.name)||file.type==='image/svg+xml',direction=$('vectorDirection').value;
- if(direction==='from-svg'){
+ if(direction==='svg-pdf'){
+  if(!isSvg)throw Error('Choose an SVG file for SVG → PDF conversion.');
+  if(file.size>12*1024*1024)throw Error('Choose an SVG smaller than 12 MB.');
+  await loadLib('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js','jspdf-vector-export');
+  await loadLib('https://cdn.jsdelivr.net/npm/svg2pdf.js@2.5.0/dist/svg2pdf.umd.min.js','svg2pdf-vector-export');
+  const source=await file.text(),parsed=new DOMParser().parseFromString(source,'image/svg+xml'),svgEl=parsed.documentElement;
+  if(parsed.querySelector('parsererror')||!svgEl||svgEl.localName!=='svg')throw Error('This is not a valid SVG file.');
+  if(svgEl.querySelector('script,foreignObject,iframe,object,embed'))throw Error('For safety, this SVG contains active or embedded content. Export a clean SVG and try again.');
+  for(const el of svgEl.querySelectorAll('*'))for(const attr of [...el.attributes])if((attr.name==='href'||attr.name.endsWith(':href'))&&attr.value&&!attr.value.startsWith('#')&&!attr.value.startsWith('data:image/'))throw Error('This SVG links to external content. Embed its images and try again.');
+  let vb=(svgEl.getAttribute('viewBox')||'').trim().split(/[ ,]+/).map(Number),width=parseFloat(svgEl.getAttribute('width'))||0,height=parseFloat(svgEl.getAttribute('height'))||0;
+  if(vb.length===4&&vb.every(Number.isFinite)&&vb[2]>0&&vb[3]>0){width=width||vb[2];height=height||vb[3]}else if(width>0&&height>0){svgEl.setAttribute('viewBox','0 0 '+width+' '+height)}else throw Error('SVG dimensions are missing. Save the SVG with width and height or a valid viewBox.');
+  const ratio=width/height;if(!Number.isFinite(ratio)||ratio<=0)throw Error('SVG dimensions are invalid.');
+  const pageW=Math.min(1440,Math.max(72,width)),pageH=pageW/ratio;
+  if(pageH>1440){const f=1440/pageH;pageH=1440;pageW*=f}
+  svgEl.setAttribute('width',String(pageW));svgEl.setAttribute('height',String(pageH));
+  const JsPDF=window.jspdf&&window.jspdf.jsPDF;if(!JsPDF)throw Error('PDF export library did not load. Please try again.');
+  const pdf=new JsPDF({orientation:pageW>=pageH?'landscape':'portrait',unit:'pt',format:[pageW,pageH],compress:true});
+  if(typeof pdf.svg!=='function')throw Error('SVG-to-PDF engine did not load correctly. Please try again.');
+  $('status').textContent='Creating vector PDF…';
+  await pdf.svg(svgEl,{x:0,y:0,width:pageW,height:pageH});
+  const blob=pdf.output('blob');download(blob,file.name.replace(/\.svgz?$/i,'')+'_vector.pdf');done=1;
+ }else if(direction==='from-svg'){
   if(!isSvg)throw Error('Choose an SVG file for SVG → PNG/JPG conversion.');
   if(file.size>12*1024*1024)throw Error('Choose an SVG smaller than 12 MB.');
   const im=await loadImg(file);let w=im.naturalWidth||im.width,h=im.naturalHeight||im.height;
