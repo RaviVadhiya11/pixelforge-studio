@@ -125,7 +125,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   $("users-table").textContent="Loading users…";
   try{const data=await call("users",{page:currentPage});const users=data.users||[];$("page-label").textContent="Page "+currentPage;
    $("users-table").innerHTML=users.length?"<div class='table-wrap'><table><thead><tr><th>Email</th><th>Created</th><th>Last sign-in</th><th>Confirmed</th></tr></thead><tbody>"+users.map(u=>"<tr><td>"+escapeHtml(u.email||"—")+"</td><td>"+escapeHtml(u.created_at?new Date(u.created_at).toLocaleDateString():"—")+"</td><td>"+escapeHtml(u.last_sign_in_at?new Date(u.last_sign_in_at).toLocaleDateString():"Never")+"</td><td>"+(u.email_confirmed_at?"Yes":"No")+"</td></tr>").join("")+"</tbody></table></div>":"No users found.";
-   $("prev-page").disabled=currentPage<=1;$("next-page").disabled!==(data.hasMore===true);
+   $("prev-page").disabled=currentPage<=1;$("next-page").disabled = data.hasMore !== true;
   }catch(err){$("users-table").textContent=err.message;}
  }
  $("refresh-overview").addEventListener("click",loadOverview);$("refresh-users").addEventListener("click",loadUsers);
