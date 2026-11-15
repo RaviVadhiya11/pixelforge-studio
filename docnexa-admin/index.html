@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<meta name="robots" content="noindex,nofollow">
+<title>DocNexa Admin</title>
+<style>
+:root{color-scheme:dark;--bg:#080d19;--panel:#111a2c;--panel2:#17233a;--line:#263650;--muted:#9aaac2;--text:#f4f7ff;--accent:#8b7cff;--cyan:#4bd4d0;--red:#ff7185;--green:#54d69b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% -10%,#29245b 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 16px;font-weight:700;color:white;background:linear-gradient(135deg,#7867f6,#4e49bd)}button:disabled{opacity:.55;cursor:not-allowed}.secondary{background:#202d45;border:1px solid var(--line)}.danger{background:#542338;border:1px solid #8a3b59}
+.wrap{max-width:1120px;margin:auto;padding:26px 18px 60px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}.brand{display:flex;gap:12px;align-items:center}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#8b7cff,#35c8d2);font-size:22px;font-weight:900}.brand h1{font-size:19px;margin:0}.brand p{font-size:12px;color:var(--muted);margin:2px 0 0}.eyebrow{color:#a99fff;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.card{background:linear-gradient(160deg,rgba(24,36,59,.96),rgba(13,21,37,.96));border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 14px 44px #0003}
+.login{max-width:440px;margin:10vh auto}.login h2{margin:6px 0 8px;font-size:26px}.muted{color:var(--muted)}label{display:block;font-size:12px;font-weight:700;color:#c3cee0;margin:14px 0 6px}input,textarea{width:100%;border:1px solid #30415e;border-radius:12px;background:#091222;color:var(--text);padding:13px;outline:none}input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #8b7cff25}textarea{min-height:115px;resize:vertical}.full{width:100%;margin-top:18px}.hidden{display:none!important}.notice{padding:12px 14px;border-radius:12px;background:#1c2b44;color:#cbd7ea;font-size:13px;margin-top:14px}.error{color:#ff9eac}.success{color:#7be2b2}
+.nav{display:flex;gap:8px;overflow:auto;margin:0 0 18px;padding-bottom:5px}.nav button{white-space:nowrap;background:#111b2d;border:1px solid var(--line);color:#c8d3e5}.nav button.active{background:#2b2b59;border-color:#7d70ed;color:white}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:16px}.stat{min-height:118px}.stat .value{font-size:30px;font-weight:800;letter-spacing:-.04em;margin:9px 0 2px}.stat .label{font-size:12px;color:var(--muted)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.section-head h2{font-size:18px;margin:0}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:520px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);font-size:13px}th{color:#aab8ce;font-size:11px;text-transform:uppercase;letter-spacing:.08em}td{color:#e5ebf6}.pill{display:inline-block;padding:4px 9px;border-radius:999px;background:#1d3b36;color:#79e0b2;font-size:11px;font-weight:800}.pill.pending{background:#41351d;color:#f5ce7c}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{padding:9px 12px;font-size:12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.module{min-height:160px}.module h3{margin:8px 0}.module p{font-size:13px;color:var(--muted)}.footer{margin-top:22px;color:#788aa5;font-size:11px;text-align:center}.status{font-size:12px;margin-top:12px;min-height:18px}.toolbar{display:flex;align-items:center;gap:8px}.small{font-size:12px}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.row{grid-template-columns:1fr}.wrap{padding:18px 12px 42px}.card{padding:16px}.top{align-items:flex-start}.brand p{max-width:200px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+ <div class="brand"><div class="logo">D</div><div><div class="eyebrow">PixelFire Studio · Control Center</div><h1>DocNexa Admin</h1><p>Secure app operations dashboard</p></div></div>
+ <div id="user-tools" class="toolbar hidden"><span id="signed-email" class="muted small"></span><button id="logout" class="secondary">Sign out</button></div>
+</header>
+<section id="login-view" class="card login">
+ <div class="eyebrow">Administrator access</div><h2>Welcome back</h2><p class="muted">Sign in with the administrator account already registered in DocNexa Cloud.</p>
+ <form id="login-form"><label for="email">Email address</label><input id="email" type="email" autocomplete="username" required placeholder="Admin email"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Password"><button class="full" id="login-button" type="submit">Secure sign in</button></form>
+ <div id="login-status" class="status muted" aria-live="polite"></div>
+ <div class="notice">Only email addresses explicitly allowlisted on the server can use this dashboard. Never share your password or server keys.</div>
+</section>
+<section id="app-view" class="hidden">
+ <nav class="nav">
+  <button class="active" data-tab="overview">Overview</button><button data-tab="users">Users</button><button data-tab="notifications">Notifications</button><button data-tab="insights">Analytics & Ads</button><button data-tab="activity">Activity log</button>
+ </nav>
+ <div id="tab-overview">
+  <div class="section-head"><div><div class="eyebrow">Live overview</div><h2>App health at a glance</h2></div><button id="refresh-overview" class="secondary">Refresh</button></div>
+  <div class="grid">
+   <div class="card stat"><div class="label">Registered cloud accounts</div><div id="stat-users" class="value">—</div><div class="label">Supabase Auth users</div></div>
+   <div class="card stat"><div class="label">Push audience</div><div class="value">Topic</div><div class="label">docnexa_announcements</div></div>
+   <div class="card stat"><div class="label">Analytics</div><div id="stat-analytics" class="value">—</div><div class="label">GA4 reporting connection</div></div>
+   <div class="card stat"><div class="label">AdMob reports</div><div id="stat-admob" class="value">—</div><div class="label">Revenue API connection</div></div>
+  </div>
+  <div class="card"><div class="section-head"><h2>Recent sign-ups</h2><button class="secondary" data-go="users">View users</button></div><div id="recent-users" class="muted small">Loading…</div></div>
+  <div class="notice">This dashboard does not expose Firebase service-account keys or Supabase server keys in the browser. Admin actions are checked by the Edge Function.</div>
+ </div>
+ <div id="tab-users" class="hidden">
+  <div class="section-head"><div><div class="eyebrow">Account management</div><h2>Cloud users</h2></div><button id="refresh-users" class="secondary">Refresh users</button></div>
+  <div class="card"><div id="users-table" class="muted small">Loading users…</div><div class="actions" style="margin-top:14px"><button id="prev-page" class="secondary">Previous</button><span id="page-label" class="muted small" style="align-self:center">Page 1</span><button id="next-page" class="secondary">Next</button></div></div>
+ </div>
+ <div id="tab-notifications" class="hidden">
+  <div class="section-head"><div><div class="eyebrow">Firebase Cloud Messaging</div><h2>Send announcement</h2></div><span class="pill">Admin only</span></div>
+  <div class="row">
+   <div class="card"><form id="notify-form"><label for="notify-title">Notification title · max 80 characters</label><input id="notify-title" maxlength="80" required value="DocNexa Update"><label for="notify-body">Message · max 500 characters</label><textarea id="notify-body" maxlength="500" required placeholder="Write an update for DocNexa users…"></textarea><div class="muted small"><span id="char-count">0</span>/500</div><button class="full" id="send-button" type="submit">Review and send to all subscribed installations</button></form><div id="notify-status" class="status muted" aria-live="polite"></div></div>
+   <div class="card module"><div class="eyebrow">Audience</div><h3>All opted-in installations</h3><p>Messages are sent to the FCM topic <strong>docnexa_announcements</strong>. The Android app currently subscribes each installation to this topic by default. Delivery depends on device connectivity and notification permission.</p><div class="notice">Sending is immediate and cannot be recalled. Always test the wording before sending.</div></div>
+  </div>
+ </div>
+ <div id="tab-insights" class="hidden">
+  <div class="eyebrow">Performance & monetization</div><h2>Analytics and AdMob</h2>
+  <div class="row">
+   <div class="card module"><span class="pill pending">Connection pending</span><h3>Firebase / Google Analytics 4</h3><p>Firebase SDK is present in the Android app. Aggregate dashboard reporting needs the GA4 property connection and reporting permission for the server identity.</p><a href="https://console.firebase.google.com/project/docnexa-f428d/analytics" target="_blank" rel="noopener">Open Firebase Analytics ↗</a></div>
+   <div class="card module"><span class="pill pending">Connection pending</span><h3>AdMob revenue reports</h3><p>Native ads are integrated in the Android app. Revenue, impressions, eCPM and estimated earnings require secure AdMob API OAuth authorization; the app ad unit ID alone cannot provide earnings data.</p><a href="https://admob.google.com/" target="_blank" rel="noopener">Open AdMob ↗</a></div>
+  </div>
+  <div class="notice">Do not treat ad impressions or estimated earnings as guaranteed income. AdMob reporting can be delayed and values may be adjusted.</div>
+ </div>
+ <div id="tab-activity" class="hidden">
+  <div class="section-head"><div><div class="eyebrow">Audit trail</div><h2>Admin activity</h2></div><button id="refresh-audit" class="secondary">Refresh</button></div>
+  <div class="card"><div id="audit-table" class="muted small">Loading activity…</div></div>
+ </div>
+</section>
+<div class="footer">DocNexa Admin · Private operations area · PixelFire Studio</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+ const SUPABASE_URL="https://xayptkukxsmogxsnpnpa.supabase.co";
+ const SUPABASE_PUBLISHABLE_KEY="sb_publishable_GYXmh25W433C0ll6i8ldEw_tf37VR2K";
+ const FUNCTION_URL=SUPABASE_URL+"/functions/v1/docnexa-admin";
+ const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+ const $=id=>document.getElementById(id);
+ let currentPage=1;
+ function escapeHtml(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+ function status(id,message,error){const el=$(id);el.textContent=message;el.className="status "+(error?"error":"success");}
+ async function call(action,extra){
+  const {data:{session}}=await client.auth.getSession();
+  if(!session) throw new Error("Your session expired. Sign in again.");
+  const response=await fetch(FUNCTION_URL,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+session.access_token,"apikey":SUPABASE_PUBLISHABLE_KEY},body:JSON.stringify(Object.assign({action:action},extra||{}))});
+  const result=await response.json().catch(()=>({error:"Invalid server response"}));
+  if(!response.ok) throw new Error(result.error||("Request failed ("+response.status+")"));
+  return result;
+ }
+ function showApp(email){
+  $("login-view").classList.add("hidden");$("app-view").classList.remove("hidden");$("user-tools").classList.remove("hidden");$("signed-email").textContent=email||"Admin";
+  loadOverview();
+ }
+ function showLogin(){ $("login-view").classList.remove("hidden");$("app-view").classList.add("hidden");$("user-tools").classList.add("hidden");}
+ $("login-form").addEventListener("submit",async e=>{
+  e.preventDefault();const btn=$("login-button");btn.disabled=true;status("login-status","Signing in securely…");
+  const {data,error}=await client.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
+  btn.disabled=false;
+  if(error){status("login-status",error.message,true);return;}
+  try{await call("overview",{});showApp(data.user.email);}
+  catch(err){await client.auth.signOut();status("login-status",err.message,true);}
+ });
+ $("logout").addEventListener("click",async()=>{await client.auth.signOut();showLogin();});
+ client.auth.onAuthStateChange((_event,session)=>{if(!session)showLogin();});
+ document.querySelectorAll("[data-tab]").forEach(btn=>btn.addEventListener("click",()=>openTab(btn.dataset.tab)));
+ document.querySelectorAll("[data-go]").forEach(btn=>btn.addEventListener("click",()=>openTab(btn.dataset.go)));
+ function openTab(name){
+  document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));
+  ["overview","users","notifications","insights","activity"].forEach(t=>$("tab-"+t).classList.toggle("hidden",t!==name));
+  if(name==="users")loadUsers();if(name==="activity")loadAudit();
+ }
+ async function loadOverview(){
+  $("stat-users").textContent="…";
+  try{const data=await call("overview",{});$("stat-users").textContent=data.totalUsersLabel||String(data.totalUsers??"—");$("stat-analytics").textContent=data.analyticsConnected?"Ready":"Pending";$("stat-admob").textContent=data.admobConnected?"Ready":"Pending";renderRecent(data.recentUsers||[]);}
+  catch(err){$("stat-users").textContent="—";$("recent-users").textContent=err.message;}
+ }
+ function renderRecent(users){
+  if(!users.length){$("recent-users").textContent="No account records returned yet.";return;}
+  $("recent-users").innerHTML="<div class='table-wrap'><table><thead><tr><th>Email</th><th>Joined</th></tr></thead><tbody>"+users.slice(0,5).map(u=>"<tr><td>"+escapeHtml(u.email||"No email")+"</td><td>"+escapeHtml(new Date(u.created_at).toLocaleDateString())+"</td></tr>").join("")+"</tbody></table></div>";
+ }
+ async function loadUsers(){
+  $("users-table").textContent="Loading users…";
+  try{const data=await call("users",{page:currentPage});const users=data.users||[];$("page-label").textContent="Page "+currentPage;
+   $("users-table").innerHTML=users.length?"<div class='table-wrap'><table><thead><tr><th>Email</th><th>Created</th><th>Last sign-in</th><th>Confirmed</th></tr></thead><tbody>"+users.map(u=>"<tr><td>"+escapeHtml(u.email||"—")+"</td><td>"+escapeHtml(u.created_at?new Date(u.created_at).toLocaleDateString():"—")+"</td><td>"+escapeHtml(u.last_sign_in_at?new Date(u.last_sign_in_at).toLocaleDateString():"Never")+"</td><td>"+(u.email_confirmed_at?"Yes":"No")+"</td></tr>").join("")+"</tbody></table></div>":"No users found.";
+   $("prev-page").disabled=currentPage<=1;$("next-page").disabled = data.hasMore !== true;
+  }catch(err){$("users-table").textContent=err.message;}
+ }
+ $("refresh-overview").addEventListener("click",loadOverview);$("refresh-users").addEventListener("click",loadUsers);
+ $("prev-page").addEventListener("click",()=>{if(currentPage>1){currentPage--;loadUsers();}});
+ $("next-page").addEventListener("click",()=>{currentPage++;loadUsers();});
+ $("notify-body").addEventListener("input",()=>$("char-count").textContent=String($("notify-body").value.length));
+ $("notify-form").addEventListener("submit",async e=>{
+  e.preventDefault();const title=$("notify-title").value.trim(),body=$("notify-body").value.trim();
+  if(!title||!body){status("notify-status","Enter both title and message.",true);return;}
+  if(!confirm("Send this notification to ALL subscribed DocNexa installations now? This cannot be recalled."))return;
+  const btn=$("send-button");btn.disabled=true;btn.textContent="Sending securely…";status("notify-status","Sending through Firebase Cloud Messaging…");
+  try{const result=await call("send_notification",{title:title,body:body});status("notify-status","Firebase accepted the notification. Message ID: "+result.messageId);$("notify-body").value="";$("char-count").textContent="0";}
+  catch(err){status("notify-status",err.message,true);}
+  finally{btn.disabled=false;btn.textContent="Review and send to all subscribed installations";}
+ });
+ async function loadAudit(){
+  $("audit-table").textContent="Loading activity…";
+  try{const data=await call("audit",{});const rows=data.rows||[];$("audit-table").innerHTML=rows.length?"<div class='table-wrap'><table><thead><tr><th>Time</th><th>Admin</th><th>Action</th><th>Title</th><th>Message ID</th></tr></thead><tbody>"+rows.map(r=>"<tr><td>"+escapeHtml(new Date(r.created_at).toLocaleString())+"</td><td>"+escapeHtml(r.admin_email)+"</td><td>"+escapeHtml(r.action)+"</td><td>"+escapeHtml(r.title||"—")+"</td><td>"+escapeHtml(r.fcm_message_id||"—")+"</td></tr>").join("")+"</tbody></table></div>":"No admin actions recorded yet.";}
+  catch(err){$("audit-table").textContent=err.message;}
+ }
+ $("refresh-audit").addEventListener("click",loadAudit);
+ client.auth.getSession().then(({data})=>{if(data.session)call("overview",{}).then(()=>showApp(data.session.user.email)).catch(()=>client.auth.signOut());});
+})();
+</script>
+</body>
+</html>
