@@ -139,7 +139,7 @@ async function getGoogleAnalyticsToken(serviceAccount: Record<string, string>): 
     exp: now + 3600,
   }));
   const unsigned = header + "." + claims;
-  const pem = String(serviceAccount.private_key || "").replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\\s/g, "");
+  const pem = String(serviceAccount.private_key || "").replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\s/g, "");
   if (!pem) throw new Error("GA4 service-account private key is missing.");
   const keyBytes = Uint8Array.from(atob(pem), c => c.charCodeAt(0));
   const privateKey = await crypto.subtle.importKey(
