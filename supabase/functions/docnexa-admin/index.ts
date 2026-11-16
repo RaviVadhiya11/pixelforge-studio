@@ -230,7 +230,11 @@ Deno.serve(async (req: Request) => {
         admobConnected: false,
       }, 200, origin);
     }
-    if (action === "analytics_report") {\n      const report = await getAnalyticsReport();\n      return json({ ok: true, report }, 200, origin);\n    }\n    if (action === "users") {
+    if (action === "analytics_report") {
+      const report = await getAnalyticsReport();
+      return json({ ok: true, report }, 200, origin);
+    }
+    if (action === "users") {
       const page = Math.max(1, Math.min(10000, Number(input.page) || 1));
       const users = await listUsers(admin.adminKey, page, 25);
       return json({
