@@ -59,10 +59,10 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
  <div id="tab-insights" class="hidden">
   <div class="eyebrow">Performance & monetization</div><h2>Analytics and AdMob</h2>
   <div class="row">
-   <div class="card module"><span class="pill pending">Connection pending</span><h3>Firebase / Google Analytics 4</h3><p>Firebase SDK is present in the Android app. Aggregate dashboard reporting needs the GA4 property connection and reporting permission for the server identity.</p><a href="https://console.firebase.google.com/project/docnexa-f428d/analytics" target="_blank" rel="noopener">Open Firebase Analytics ↗</a></div>
+   <div class="card module"><span id="ga4-status" class="pill pending">Not tested yet</span><h3>Firebase / Google Analytics 4</h3><p>GA4 reporting for property 564388958 · Last 7 days.</p><button id="refresh-ga4" class="secondary">Load Analytics report</button><div id="ga4-report" class="muted small" style="margin-top:14px">Tap Load Analytics report to retrieve current metrics.</div><a href="https://analytics.google.com/" target="_blank" rel="noopener">Open Google Analytics ↗</a></div>
    <div class="card module"><span class="pill pending">Connection pending</span><h3>AdMob revenue reports</h3><p>Native ads are integrated in the Android app. Revenue, impressions, eCPM and estimated earnings require secure AdMob API OAuth authorization; the app ad unit ID alone cannot provide earnings data.</p><a href="https://admob.google.com/" target="_blank" rel="noopener">Open AdMob ↗</a></div>
   </div>
-  <div class="notice">Do not treat ad impressions or estimated earnings as guaranteed income. AdMob reporting can be delayed and values may be adjusted.</div>
+  <div class="notice">Analytics values are reported by GA4 and may be delayed. Do not treat ad impressions or estimated earnings as guaranteed income.</div>
  </div>
  <div id="tab-activity" class="hidden">
   <div class="section-head"><div><div class="eyebrow">Audit trail</div><h2>Admin activity</h2></div><button id="refresh-audit" class="secondary">Refresh</button></div>
@@ -128,6 +128,16 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
    $("prev-page").disabled=currentPage<=1;$("next-page").disabled = data.hasMore !== true;
   }catch(err){$("users-table").textContent=err.message;}
  }
+ async function loadGa4Report(){
+  const button=$("refresh-ga4");button.disabled=true;button.textContent="Loading…";$("ga4-report").textContent="Connecting securely to Google Analytics…";
+  try{
+   const data=await call("analytics_report",{});const r=data.report;
+   $("ga4-status").textContent="Connected";$("ga4-status").className="pill";
+   $("ga4-report").innerHTML="<div class='grid'><div class='stat'><div class='label'>Active users</div><div class='value'>"+Number(r.activeUsers).toLocaleString()+"</div></div><div class='stat'><div class='label'>Total users</div><div class='value'>"+Number(r.totalUsers).toLocaleString()+"</div></div><div class='stat'><div class='label'>Screen views</div><div class='value'>"+Number(r.screenPageViews).toLocaleString()+"</div></div><div class='stat'><div class='label'>Sessions</div><div class='value'>"+Number(r.sessions).toLocaleString()+"</div></div></div><p class='muted small'>"+escapeHtml(r.period)+" · Updated "+escapeHtml(new Date(r.generatedAt).toLocaleString())+"</p>";
+  }catch(err){$("ga4-status").textContent="Needs attention";$("ga4-status").className="pill pending";$("ga4-report").textContent=err.message;}
+  finally{button.disabled=false;button.textContent="Refresh Analytics report";}
+ }
+ $("refresh-ga4").addEventListener("click",loadGa4Report);
  $("refresh-overview").addEventListener("click",loadOverview);$("refresh-users").addEventListener("click",loadUsers);
  $("prev-page").addEventListener("click",()=>{if(currentPage>1){currentPage--;loadUsers();}});
  $("next-page").addEventListener("click",()=>{currentPage++;loadUsers();});
