@@ -221,8 +221,12 @@ async function getAdMobAccessToken(): Promise<string> {
   });
   const result = await response.json();
   if (!response.ok || !result.access_token) {
-    console.error("AdMob OAuth token refresh failed:", result.error || response.status);
-    throw new Error("Google could not authorize AdMob reports. Check the AdMob OAuth secrets and consent.");
+    const oauthError = String(result.error || "");
+    console.error("AdMob OAuth token refresh failed:", oauthError || response.status);
+    if (oauthError === "invalid_client") throw new Error("AdMob OAuth: Google rejected the Client ID or Client Secret. Check that both belong to the same OAuth client.");
+    if (oauthError === "invalid_grant") throw new Error("AdMob OAuth: Refresh Token is invalid, expired, revoked, or belongs to a different OAuth client. Generate a new refresh token using this exact client.");
+    if (oauthError === "unauthorized_client") throw new Error("AdMob OAuth: This OAuth client is not authorized for the requested token flow.");
+    throw new Error("AdMob OAuth authorization failed (" + (oauthError || "HTTP " + response.status) + "). Check the OAuth client and refresh token.");
   }
   return result.access_token;
 }
