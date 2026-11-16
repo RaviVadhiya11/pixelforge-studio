@@ -60,7 +60,7 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   <div class="eyebrow">Performance & monetization</div><h2>Analytics and AdMob</h2>
   <div class="row">
    <div class="card module"><span id="ga4-status" class="pill pending">Not tested yet</span><h3>Firebase / Google Analytics 4</h3><p>GA4 reporting for property 564388958 · Last 7 days.</p><button id="refresh-ga4" class="secondary">Load Analytics report</button><div id="ga4-report" class="muted small" style="margin-top:14px">Tap Load Analytics report to retrieve current metrics.</div><a href="https://analytics.google.com/" target="_blank" rel="noopener">Open Google Analytics ↗</a></div>
-   <div class="card module"><span class="pill pending">Connection pending</span><h3>AdMob revenue reports</h3><p>Native ads are integrated in the Android app. Revenue, impressions, eCPM and estimated earnings require secure AdMob API OAuth authorization; the app ad unit ID alone cannot provide earnings data.</p><a href="https://admob.google.com/" target="_blank" rel="noopener">Open AdMob ↗</a></div>
+   <div class="card module"><span id="admob-status" class="pill pending">Not tested yet</span><h3>AdMob revenue reports</h3><p>Last 7 days · INR estimated earnings, impressions, clicks and eCPM.</p><button id="refresh-admob" class="secondary">Load AdMob report</button><div id="admob-report" class="muted small" style="margin-top:14px">Tap Load AdMob report to retrieve current metrics.</div><a href="https://admob.google.com/" target="_blank" rel="noopener">Open AdMob ↗</a></div>
   </div>
   <div class="notice">Analytics values are reported by GA4 and may be delayed. Do not treat ad impressions or estimated earnings as guaranteed income.</div>
  </div>
@@ -137,6 +137,19 @@ button,input,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:
   }catch(err){$("ga4-status").textContent="Needs attention";$("ga4-status").className="pill pending";$("ga4-report").textContent=err.message;}
   finally{button.disabled=false;button.textContent="Refresh Analytics report";}
  }
+
+ async function loadAdmobReport(){
+  const button=$("refresh-admob");button.disabled=true;button.textContent="Loading…";$("admob-report").textContent="Connecting securely to AdMob…";
+  try{
+   const data=await call("admob_report",{});const r=data.report;
+   $("admob-status").textContent="Connected";$("admob-status").className="pill";
+   const money=value=>new Intl.NumberFormat("en-IN",{style:"currency",currency:r.currency||"INR",maximumFractionDigits:2}).format(Number(value||0));
+   $("admob-report").innerHTML="<div class='grid'><div class='stat'><div class='label'>Estimated earnings</div><div class='value' style='font-size:23px'>"+escapeHtml(money(r.estimatedEarnings))+"</div></div><div class='stat'><div class='label'>Impressions</div><div class='value'>"+Number(r.impressions||0).toLocaleString()+"</div></div><div class='stat'><div class='label'>Clicks</div><div class='value'>"+Number(r.clicks||0).toLocaleString()+"</div></div><div class='stat'><div class='label'>eCPM</div><div class='value' style='font-size:23px'>"+escapeHtml(money(r.ecpm))+"</div></div></div><p class='muted small'>"+escapeHtml(r.period)+" · Updated "+escapeHtml(new Date(r.generatedAt).toLocaleString())+"</p>";
+  }catch(err){$("admob-status").textContent="Needs attention";$("admob-status").className="pill pending";$("admob-report").textContent=err.message;}
+  finally{button.disabled=false;button.textContent="Refresh AdMob report";}
+ }
+ $("refresh-admob").addEventListener("click",loadAdmobReport);
+
  $("refresh-ga4").addEventListener("click",loadGa4Report);
  $("refresh-overview").addEventListener("click",loadOverview);$("refresh-users").addEventListener("click",loadUsers);
  $("prev-page").addEventListener("click",()=>{if(currentPage>1){currentPage--;loadUsers();}});
