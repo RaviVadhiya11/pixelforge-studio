@@ -32,4 +32,4 @@ jobs:
             echo "Missing GitHub repository secret: SUPABASE_ACCESS_TOKEN"
             exit 1
           fi
-          supabase functions deploy docnexa-admin --project-ref xayptkukxsmogxsnpnpa --no-verify-jwt
+          supabase functions deploy docnexa-admin --project-ref xayptkukxsmogxsnpnpa --no-verify-jwt --yes
