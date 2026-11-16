@@ -198,6 +198,86 @@ async function getAnalyticsReport() {
   };
 }
 
+
+function dateParts(date: Date) {
+  return { year: date.getUTCFullYear(), month: date.getUTCMonth() + 1, day: date.getUTCDate() };
+}
+async function getAdMobAccessToken(): Promise<string> {
+  const clientId = Deno.env.get("ADMOB_CLIENT_ID");
+  const clientSecret = Deno.env.get("ADMOB_CLIENT_SECRET");
+  const refreshToken = Deno.env.get("ADMOB_REFRESH_TOKEN");
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error("AdMob OAuth secrets are not fully configured in Supabase.");
+  }
+  const response = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      client_id: clientId,
+      client_secret: clientSecret,
+      refresh_token: refreshToken,
+      grant_type: "refresh_token",
+    }),
+  });
+  const result = await response.json();
+  if (!response.ok || !result.access_token) {
+    console.error("AdMob OAuth token refresh failed:", result.error || response.status);
+    throw new Error("Google could not authorize AdMob reports. Check the AdMob OAuth secrets and consent.");
+  }
+  return result.access_token;
+}
+async function getAdMobReport() {
+  const accessToken = await getAdMobAccessToken();
+  const accountsResponse = await fetch("https://admob.googleapis.com/v1/accounts", {
+    headers: { "Authorization": "Bearer " + accessToken },
+  });
+  const accountsBody = await accountsResponse.json();
+  if (!accountsResponse.ok) {
+    console.error("AdMob accounts lookup failed:", accountsBody.error?.message || accountsResponse.status);
+    throw new Error("Could not read the AdMob publisher account. Check API access and the OAuth account.");
+  }
+  const accounts = Array.isArray(accountsBody.account) ? accountsBody.account : [];
+  const account = accounts.find((item: Record<string, unknown>) => typeof item.name === "string" && item.name.startsWith("accounts/"));
+  if (!account || typeof account.name !== "string") {
+    throw new Error("No AdMob publisher account was found for the authorized Google account.");
+  }
+  const end = new Date();
+  const start = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate() - 7));
+  const reportResponse = await fetch("https://admob.googleapis.com/v1/" + account.name + "/networkReport:generate", {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + accessToken, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      reportSpec: {
+        dateRange: { startDate: dateParts(start), endDate: dateParts(end) },
+        metrics: ["ESTIMATED_EARNINGS", "IMPRESSIONS", "CLICKS", "IMPRESSION_RPM"],
+        localizationSettings: { currencyCode: "INR", languageCode: "en-IN" },
+      },
+    }),
+  });
+  const reportBody = await reportResponse.json();
+  if (!reportResponse.ok) {
+    console.error("AdMob report request failed:", reportBody.error?.message || reportResponse.status);
+    throw new Error("AdMob rejected the report request. Check reporting access and try again later.");
+  }
+  const rows = Array.isArray(reportBody) ? reportBody.filter((item: Record<string, unknown>) => item.row).map((item: Record<string, any>) => item.row) : [];
+  const sumMetric = (name: string, field: "integerValue" | "microsValue") =>
+    rows.reduce((total: number, row: Record<string, any>) => total + Number(row.metricValues?.[name]?.[field] || 0), 0);
+  const earningsMicros = sumMetric("ESTIMATED_EARNINGS", "microsValue");
+  const impressions = sumMetric("IMPRESSIONS", "integerValue");
+  const clicks = sumMetric("CLICKS", "integerValue");
+  const ecpmMicros = sumMetric("IMPRESSION_RPM", "microsValue");
+  return {
+    period: "Last 7 days",
+    currency: "INR",
+    estimatedEarnings: earningsMicros / 1000000,
+    impressions,
+    clicks,
+    ecpm: ecpmMicros / 1000000,
+    publisherAccount: account.name,
+    generatedAt: new Date().toISOString(),
+  };
+}
+
 async function writeAudit(adminKey: string, email: string, action: string, title = "", messageId = "") {
   const url = Deno.env.get("SUPABASE_URL")!;
   const response = await fetch(url + "/rest/v1/docnexa_admin_audit", {
@@ -227,11 +307,15 @@ Deno.serve(async (req: Request) => {
         totalUsersLabel: users.length === 100 ? "100+" : String(users.length),
         recentUsers: users.slice().sort((a, b) => Date.parse(b.created_at || "") - Date.parse(a.created_at || "")).slice(0, 5),
         analyticsConnected: Boolean(Deno.env.get("GA4_SERVICE_ACCOUNT_JSON")),
-        admobConnected: false,
+        admobConnected: Boolean(Deno.env.get("ADMOB_CLIENT_ID") && Deno.env.get("ADMOB_CLIENT_SECRET") && Deno.env.get("ADMOB_REFRESH_TOKEN")),
       }, 200, origin);
     }
     if (action === "analytics_report") {
       const report = await getAnalyticsReport();
+      return json({ ok: true, report }, 200, origin);
+    }
+    if (action === "admob_report") {
+      const report = await getAdMobReport();
       return json({ ok: true, report }, 200, origin);
     }
     if (action === "users") {
