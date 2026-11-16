@@ -127,6 +127,77 @@ async function sendNotification(title: string, body: string): Promise<string> {
   if (!response.ok) throw new Error(result.error?.message || "Firebase rejected the notification.");
   return String(result.name || "accepted");
 }
+
+async function getGoogleAnalyticsToken(serviceAccount: Record<string, string>): Promise<string> {
+  const now = Math.floor(Date.now() / 1000);
+  const header = base64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
+  const claims = base64url(JSON.stringify({
+    iss: serviceAccount.client_email,
+    scope: "https://www.googleapis.com/auth/analytics.readonly",
+    aud: "https://oauth2.googleapis.com/token",
+    iat: now,
+    exp: now + 3600,
+  }));
+  const unsigned = header + "." + claims;
+  const pem = String(serviceAccount.private_key || "").replace(/-----BEGIN PRIVATE KEY-----|-----END PRIVATE KEY-----|\\s/g, "");
+  if (!pem) throw new Error("GA4 service-account private key is missing.");
+  const keyBytes = Uint8Array.from(atob(pem), c => c.charCodeAt(0));
+  const privateKey = await crypto.subtle.importKey(
+    "pkcs8", keyBytes, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["sign"]
+  );
+  const signature = new Uint8Array(await crypto.subtle.sign("RSASSA-PKCS1-v1_5", privateKey, encoder.encode(unsigned)));
+  const assertion = unsigned + "." + base64url(signature);
+  const tokenResponse = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      assertion,
+    }),
+  });
+  const tokenBody = await tokenResponse.json();
+  if (!tokenResponse.ok || !tokenBody.access_token) throw new Error("Google could not authorize the GA4 reporting request.");
+  return tokenBody.access_token;
+}
+async function getAnalyticsReport() {
+  const raw = Deno.env.get("GA4_SERVICE_ACCOUNT_JSON");
+  if (!raw) throw new Error("GA4 service account secret is not configured in Supabase.");
+  let account: Record<string, string>;
+  try { account = JSON.parse(raw); } catch { throw new Error("GA4 service account secret is not valid JSON."); }
+  if (!account.client_email || !account.private_key) throw new Error("GA4 service account JSON is missing required credentials.");
+  if (account.project_id !== "docnexa-f428d") throw new Error("GA4 service account belongs to a different Google Cloud project.");
+  const accessToken = await getGoogleAnalyticsToken(account);
+  const response = await fetch("https://analyticsdata.googleapis.com/v1beta/properties/564388958:runReport", {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + accessToken, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+      metrics: [
+        { name: "activeUsers" },
+        { name: "totalUsers" },
+        { name: "screenPageViews" },
+        { name: "sessions" },
+      ],
+    }),
+  });
+  const result = await response.json();
+  if (!response.ok) {
+    const detail = result.error?.message || "Google Analytics rejected the report request.";
+    throw new Error(detail);
+  }
+  const values = result.totals?.[0]?.metricValues || result.rows?.[0]?.metricValues || [];
+  const numberAt = (index: number) => Number(values[index]?.value || 0);
+  return {
+    period: "Last 7 days",
+    activeUsers: numberAt(0),
+    totalUsers: numberAt(1),
+    screenPageViews: numberAt(2),
+    sessions: numberAt(3),
+    propertyId: "564388958",
+    generatedAt: new Date().toISOString(),
+  };
+}
+
 async function writeAudit(adminKey: string, email: string, action: string, title = "", messageId = "") {
   const url = Deno.env.get("SUPABASE_URL")!;
   const response = await fetch(url + "/rest/v1/docnexa_admin_audit", {
@@ -155,11 +226,11 @@ Deno.serve(async (req: Request) => {
         totalUsers: users.length,
         totalUsersLabel: users.length === 100 ? "100+" : String(users.length),
         recentUsers: users.slice().sort((a, b) => Date.parse(b.created_at || "") - Date.parse(a.created_at || "")).slice(0, 5),
-        analyticsConnected: false,
+        analyticsConnected: Boolean(Deno.env.get("GA4_SERVICE_ACCOUNT_JSON")),
         admobConnected: false,
       }, 200, origin);
     }
-    if (action === "users") {
+    if (action === "analytics_report") {\n      const report = await getAnalyticsReport();\n      return json({ ok: true, report }, 200, origin);\n    }\n    if (action === "users") {
       const page = Math.max(1, Math.min(10000, Number(input.page) || 1));
       const users = await listUsers(admin.adminKey, page, 25);
       return json({
