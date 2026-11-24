@@ -88,3 +88,34 @@ footer{background:#080c19!important;border-top:1px solid var(--pf-border)!import
 }
 @media(max-width:390px){.toolgrid{grid-template-columns:1fr 1fr!important}.toolcard{padding:12px!important}}
 @media(min-width:761px){.hero{text-align:center}.toolgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+
+/* Premium polish v2 — refined brand, cleaner hierarchy and stronger tool discovery */
+:root{--pf-accent:#8b6bff;--pf-accent2:#39c9e5}
+.brand,.brand:visited,.brand:hover,.brand:focus{text-decoration:none!important;color:#f8f9ff!important}
+.brand span{color:#f8f9ff!important;text-decoration:none!important}
+.brand span em{color:transparent!important;background:linear-gradient(100deg,#b69aff,#53d8ec)!important;background-clip:text!important;-webkit-background-clip:text!important;text-decoration:none!important}
+.hero{border-color:rgba(161,139,255,.28)!important;background:radial-gradient(ellipse at 85% 0%,rgba(110,80,230,.24),transparent 38%),radial-gradient(ellipse at 0% 100%,rgba(38,180,214,.11),transparent 42%),linear-gradient(145deg,#151b38 0%,#0d1429 58%,#15132f 100%)!important;box-shadow:0 28px 80px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.08)!important}
+.hero:before{letter-spacing:1.4px!important;background:rgba(111,83,204,.15)!important;border-color:rgba(174,151,255,.38)!important;color:#d8d0ff!important}
+.hero h1{font-weight:850!important;text-wrap:balance}
+.hero p{margin-left:auto!important;margin-right:auto!important}
+.hero-quick-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:24px auto 0}
+.hero-quick-actions a{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 22px;border-radius:13px;text-decoration:none!important;font-size:14px;font-weight:800;color:#f8f9ff!important;background:linear-gradient(105deg,#8954f4,#4c69e7 65%,#20b6d5);box-shadow:0 9px 26px rgba(104,82,220,.25);transition:transform .2s,filter .2s}
+.hero-quick-actions a:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.hero-quick-actions a+a{background:rgba(255,255,255,.045);border:1px solid rgba(174,185,235,.2);box-shadow:none;color:#dbe2fa!important}
+.pf-product-banner{display:none!important}
+.sectionhead h2{font-weight:850!important}
+.toolcard{border-color:rgba(159,173,226,.13)!important;background:linear-gradient(150deg,rgba(24,33,61,.96),rgba(13,21,40,.98))!important}
+.toolcard .toolicon{font-size:20px!important}
+.toolcard b{display:block;letter-spacing:-.25px}
+.toolcard small{display:block;max-width:34ch}
+.filters{scrollbar-color:#6552b5 transparent}
+.workspace{scroll-margin-top:92px}
+.auth-nav-btn{font-weight:800!important}
+@media(max-width:760px){
+ .hero-quick-actions{display:grid;grid-template-columns:1fr;width:100%;max-width:440px}
+ .hero-quick-actions a{width:100%;min-height:52px}
+ .brand span{font-size:17px!important}
+ .navright .auth-nav-btn{padding:11px 13px!important;font-size:12px!important}
+ .pf-mobile-nav{border-radius:18px!important}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
