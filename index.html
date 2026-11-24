@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PixelFire Studio Pro — 40 Image & Creative Tools</title><meta name="description" content="40 image tools with live editing, format conversion, creative effects and design utilities."><link rel="canonical" href="https://pixelfirestudio.in/"><meta name="robots" content="index,follow"><link rel="icon" href="/favicon.svg">
+  <title>PixelFire Studio Pro — 50 Image & Creative Tools</title><meta name="description" content="50 image tools with live editing, format conversion, creative effects and design utilities."><link rel="canonical" href="https://pixelfirestudio.in/"><meta name="robots" content="index,follow"><link rel="icon" href="/favicon.svg">
 
   <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -146,6 +146,35 @@
       animation: modalIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
   [hidden]{display:none!important}.pf-account{font-size:12px;font-weight:700;padding:8px;border:1px solid #64748b55;border-radius:10px}.auth-overlay{position:fixed;inset:0;z-index:100;background:#020617aa;display:grid;place-items:center;padding:16px}.auth-modal{position:relative;width:min(100%,430px);max-height:95vh;overflow:auto;background:white;color:#172033;border-radius:20px;padding:24px}.dark .auth-modal{background:#111827;color:#e2e8f0}.auth-close{position:absolute;right:14px;top:14px;font-size:24px}.auth-mark{background:#6366f1;color:#fff;width:45px;height:45px;display:grid;place-items:center;border-radius:12px;font-size:24px}.auth-modal h2{font-weight:800;font-size:22px;margin:12px 0}.auth-sub,.auth-foot{font-size:12px;color:#94a3b8}.auth-tabs{display:flex;gap:8px;margin:15px 0}.auth-tabs button{flex:1;padding:10px;border:1px solid #64748b55;border-radius:8px;font-weight:700}.auth-tabs button.active,.auth-submit{background:#6366f1;color:white}.auth-field{display:grid;gap:5px;margin:12px 0}.auth-field label{font-size:12px;font-weight:700}.auth-field input{width:100%;padding:11px;border:1px solid #64748b55;border-radius:8px;background:transparent}.auth-submit{width:100%;padding:12px;border-radius:10px;font-weight:700}.auth-forgot,.auth-logout{color:#818cf8;padding:10px 0}.auth-message{font-size:12px;color:#818cf8;overflow-wrap:anywhere}.auth-foot a{color:#818cf8}.dark body{background:#080b16}.studio-glow{min-height:70vh}#toolsGrid>button{transition:transform .18s,border-color .18s}#toolsGrid>button:hover{transform:translateY(-3px)}@media(max-width:420px){header .font-display{font-size:13px}header .tracking-wider{font-size:8px}.pf-account{font-size:10px;padding:6px}header .shrink-0{gap:5px}}
+
+/* Studio 50 — workspace shell, responsive native navigation and drawer */
+:root{--pf-bg:#f3f6fb;--pf-panel:#fff;--pf-border:#dce5ef;--pf-text:#122338;--pf-muted:#5b7087;--pf-active:#e1f4f2;--pf-accent:#087f79;--pf-rail:230px}
+html.dark{--pf-bg:#0a111b;--pf-panel:#101c29;--pf-border:#233449;--pf-text:#e9f2f7;--pf-muted:#a0b3c7;--pf-active:#153b42;--pf-accent:#6ce1cd}
+body{background:var(--pf-bg)!important;color:var(--pf-text);padding-bottom:0}
+header{background:var(--pf-panel)!important;border-color:var(--pf-border)!important}header>div{max-width:none!important;padding-left:24px!important;padding-right:24px!important}.pf-menu-trigger{width:40px;height:40px;flex:none;display:grid;place-items:center;border:1px solid var(--pf-border);border-radius:11px;background:var(--pf-panel);color:var(--pf-text)}
+.pf-shell{display:grid;grid-template-columns:var(--pf-rail) minmax(0,1fr);max-width:1600px;width:100%;margin:0 auto;flex:1;align-items:start}
+.pf-side{position:sticky;top:64px;max-height:calc(100dvh - 64px);overflow:auto;padding:23px 14px;align-self:start;border-right:1px solid var(--pf-border);background:var(--pf-bg)}
+.pf-side-title{display:block;margin:18px 12px 8px;color:var(--pf-muted);font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.13em}
+.pf-side button,.pf-drawer button.pf-navitem,.pf-drawer a.pf-navitem{width:100%;display:flex;align-items:center;gap:12px;padding:12px;border:0;border-radius:11px;text-align:left;color:var(--pf-muted);font-size:13px;font-weight:700;min-height:44px;text-decoration:none}
+.pf-side button:hover,.pf-side button[aria-current=true],.pf-drawer .pf-navitem:hover{background:var(--pf-active);color:var(--pf-accent)}.pf-side svg,.pf-drawer svg,.pf-bottom svg{width:20px;height:20px;flex:none}
+.pf-sidebar-note{margin:20px 6px 0;padding:14px;border-radius:14px;border:1px solid var(--pf-border);background:var(--pf-panel);font-size:11px;color:var(--pf-muted)}.pf-sidebar-note b{display:block;color:var(--pf-text);font-size:12px;margin-bottom:4px}
+main#top{min-width:0;background:none!important}.pf-hero{margin:20px 24px 0;padding:30px;border-radius:24px;background:radial-gradient(ellipse at 85% 0%,#145c63,transparent 66%),linear-gradient(125deg,#12243a,#0e3140);color:white;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(160px,.9fr);gap:20px;align-items:center;overflow:hidden}
+.pf-hero h1{font-size:clamp(30px,4vw,52px);line-height:1.08;letter-spacing:-1.8px;font-weight:800;margin:10px 0 13px;color:white}.pf-hero h1 span{color:#8debd6}.pf-hero p{color:#c4e0e4;font-size:13px;line-height:1.7;max-width:430px}.pf-hero small{font-size:10px;letter-spacing:.14em;color:#8debd6;font-weight:800}.pf-hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}.pf-hero-actions button{min-height:44px;padding:10px 15px;border-radius:11px;background:#8debd6;color:#0d3837;font-size:12px;font-weight:800}.pf-hero-actions button+button{background:#ffffff12;color:white;border:1px solid #ffffff38}.pf-hero-art{max-width:340px;width:100%;justify-self:end}
+.pf-welcome{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:24px 24px 0}.pf-welcome small{color:var(--pf-muted);font-size:10px;letter-spacing:.13em;font-weight:800}.pf-welcome h2{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-top:4px}.pf-welcome span{font-size:11px;font-weight:700;color:var(--pf-accent);background:var(--pf-active);border-radius:99px;padding:8px 12px;white-space:nowrap}
+#upgradeBanner{display:none}#top>section.max-w-7xl{max-width:none!important;padding-left:24px!important;padding-right:24px!important}#top>section.max-w-7xl:first-of-type{padding-top:18px!important;padding-bottom:20px!important}#top>section.max-w-7xl:first-of-type>div.mt-8{margin-top:0!important}
+#heroDropzone{background:var(--pf-panel)!important;border-color:var(--pf-border)!important;min-height:160px;border-radius:19px!important}#heroDropzone:hover{border-color:var(--pf-accent)!important}
+#toolsGrid{gap:12px!important}#toolsGrid>button{background:var(--pf-panel)!important;border:1px solid var(--pf-border)!important;padding:16px!important;border-radius:17px!important;min-height:170px;box-shadow:none!important}#toolsGrid>button:hover{border-color:var(--pf-accent)!important;box-shadow:0 10px 25px #0b7c7918!important}#toolsGrid>button h3{color:var(--pf-text)!important}#toolsGrid>button p{color:var(--pf-muted)!important}#toolsGrid>button .group-hover\:scale-110{border-radius:13px!important;box-shadow:none!important}
+.pf-sectionhead{display:flex;align-items:end;justify-content:space-between;margin:12px 0 14px;gap:8px}.pf-sectionhead h2{font-size:22px;font-weight:800;letter-spacing:-.5px}.pf-sectionhead p{font-size:12px;color:var(--pf-muted);margin-top:3px}
+.pf-quick{margin:0 24px 12px}.pf-quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.pf-quick-grid button{background:var(--pf-panel);color:var(--pf-text);border:1px solid var(--pf-border);border-radius:13px;padding:12px;text-align:left;font-weight:700;font-size:12px;display:flex;align-items:center;gap:9px;min-height:56px}.pf-quick-grid button svg{width:19px;height:19px;color:var(--pf-accent);flex:none}.pf-quick-grid button:hover{border-color:var(--pf-accent)}
+#workspaceModal>div{border-radius:20px!important}#workspaceModal #wsActiveBody>div:last-child{border-left:1px solid var(--pf-border)}#workspaceModal #previewStage{background:var(--pf-bg)}#workspaceModal #primaryActionBtn{background:linear-gradient(115deg,#087f79,#0b758a)!important}#workspaceModal #wsTitle{color:var(--pf-text)}#workspaceModal #wsActiveBody>div:last-child{background:var(--pf-panel)!important}
+.pf-drawer-overlay{position:fixed;inset:0;z-index:85;background:#030a13aa;backdrop-filter:blur(4px);display:flex;justify-content:flex-end}.pf-drawer{height:100%;width:min(390px,92vw);background:var(--pf-panel);border-left:1px solid var(--pf-border);color:var(--pf-text);display:flex;flex-direction:column;box-shadow:-20px 0 80px #0005;animation:pfslide .2s ease-out}.pf-drawer-header{display:flex;align-items:center;justify-content:space-between;padding:18px;border-bottom:1px solid var(--pf-border);gap:10px}.pf-drawer-header b{font-size:17px;font-weight:800}.pf-drawer-header p{font-size:11px;color:var(--pf-muted);margin-top:3px}.pf-drawer-scroll{padding:14px 15px 30px;overflow:auto;flex:1}.pf-drawer-search{width:100%;padding:12px;border:1px solid var(--pf-border);background:var(--pf-bg);color:var(--pf-text);border-radius:11px;font-size:12px;margin:8px 0}.pf-drawer-tools{display:grid;gap:2px}.pf-drawer-tools button{display:flex;align-items:center;gap:10px;min-height:42px;text-align:left;border:0;border-radius:9px;padding:9px 10px;color:var(--pf-text);font-size:12px;font-weight:650}.pf-drawer-tools button:hover{background:var(--pf-active)}.pf-drawer-tools button svg{color:var(--pf-accent);width:17px;height:17px}.pf-bottom{display:none}.pf-close{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--pf-border);border-radius:10px;color:var(--pf-text)}@keyframes pfslide{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@media(min-width:1200px){#toolsGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}@media(min-width:1460px){#toolsGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(max-width:1100px){:root{--pf-rail:190px}#toolsGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.pf-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pf-hero{padding:24px}}
+@media(max-width:900px){.pf-shell{display:block}.pf-side{display:none}.pf-bottom{position:fixed;bottom:0;left:0;right:0;z-index:42;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 8px calc(6px + env(safe-area-inset-bottom));border-top:1px solid var(--pf-border);background:var(--pf-panel);box-shadow:0 -6px 20px #00102015}.pf-bottom button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:48px;color:var(--pf-muted);font-size:10px;font-weight:750;border-radius:10px}.pf-bottom button[aria-current=true]{color:var(--pf-accent);background:var(--pf-active)}body{padding-bottom:72px}header>div{padding-left:14px!important;padding-right:14px!important}header #navPlanPill{display:none!important}.pf-hero{margin:14px 14px 0}.pf-welcome{margin:18px 14px 0}.pf-quick{margin:0 14px 10px}#top>section.max-w-7xl{padding-left:14px!important;padding-right:14px!important}}
+@media(max-width:600px){header>div{height:62px!important;gap:5px!important}.pf-menu-trigger{width:36px;height:36px}header a .font-display{font-size:14px!important}header a .tracking-wider{font-size:9px!important}header #authOpen,header #authProfile,header button[onclick="toggleTheme()"],header button[onclick="openPricingModal()"],header button[onclick="triggerFileUpload()"]{display:none!important}.pf-welcome h2{font-size:19px}.pf-hero{grid-template-columns:minmax(0,1fr) 92px;gap:5px;padding:20px;border-radius:19px}.pf-hero h1{font-size:30px;letter-spacing:-.9px}.pf-hero p{font-size:12px}.pf-hero-art{max-width:105px}.pf-hero-actions button{font-size:11px;padding:9px 11px}.pf-sectionhead h2{font-size:19px}#toolsGrid{gap:9px!important}#toolsGrid>button{min-height:154px;padding:12px!important;border-radius:14px!important}#toolsGrid>button h3{font-size:13px!important}#toolsGrid>button p{font-size:11px!important}#workspaceModal>div{border-radius:0!important;height:100dvh!important}#workspaceModal #wsActiveBody{overflow-y:auto!important;display:flex;min-height:0}#workspaceModal #wsActiveBody.hidden{display:none!important}#workspaceModal #wsActiveBody>div:first-child{flex:none;min-height:290px;max-height:45vh}#workspaceModal #wsActiveBody>div:last-child{flex:none;overflow:visible!important;border-left:0}#toolControlsContainer{overflow:visible!important}#workspaceModal #wsActiveBody>div:last-child>div:last-child{position:sticky;bottom:0;z-index:25}#previewCanvas{max-height:28vh!important}}
+@media(max-width:360px){.pf-hero{grid-template-columns:1fr}.pf-hero-art{display:none}.pf-quick-grid button{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.pf-drawer{animation:none}*{scroll-behavior:auto!important}}
+
 </style>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-[#060914] dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
@@ -167,7 +196,7 @@
           <span class="font-display font-extrabold text-base sm:text-lg leading-none tracking-tight">
             PixelFire <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Studio Pro</span>
           </span>
-          <span class="text-[10px] font-semibold text-slate-500 dark:text-slate-400 tracking-wider uppercase mt-0.5">40-in-1 Image Suite</span>
+          <span class="text-[10px] font-semibold text-slate-500 dark:text-slate-400 tracking-wider uppercase mt-0.5">50-in-1 Image Suite</span>
         </div>
       </a>
 
@@ -177,7 +206,7 @@
         <input
           type="text"
           id="navSearchInput"
-          placeholder="Search 40 tools (convert, bg remove, passport)..."
+          placeholder="Search 50 tools (convert, bg remove, passport)..."
           class="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
         />
       </div>
@@ -216,7 +245,7 @@
           <span class="hidden sm:inline">Upload</span>
         </button>
 
-        <!-- Theme Toggle -->
+        <button type="button" class="pf-menu-trigger" data-pf-action="more" aria-label="Open studio menu" aria-controls="pfDrawer" aria-expanded="false"><i data-lucide="menu"></i></button><!-- Theme Toggle -->
         <button
           onclick="toggleTheme()"
           aria-label="Toggle theme"
@@ -232,14 +261,14 @@
   <!-- ===================================================================== -->
   <!-- MAIN STUDIO LANDING PAGE -->
   <!-- ===================================================================== -->
-  <main id="top" class="flex-1 studio-glow">
+  <div class="pf-shell"><aside class="pf-side" aria-label="Studio sidebar"><span class="pf-side-title">Workspace</span><button type="button" class="pf-navitem" data-pf-action="home"><i data-lucide="house"></i><span>Overview</span></button><button type="button" class="pf-navitem" data-pf-action="tools"><i data-lucide="layout-grid"></i><span>All 50 tools</span></button><button type="button" class="pf-navitem" data-pf-action="recent"><i data-lucide="history"></i><span>Recent tools</span></button><span class="pf-side-title">Collections</span><button type="button" class="pf-navitem" data-pf-action="cat:AI Studio"><i data-lucide="sparkles"></i><span>Smart image studio</span></button><button type="button" class="pf-navitem" data-pf-action="cat:Convert & Optimize"><i data-lucide="repeat"></i><span>Convert & optimize</span></button><button type="button" class="pf-navitem" data-pf-action="cat:Edit & Effects"><i data-lucide="sliders-horizontal"></i><span>Edit & effects</span></button><button type="button" class="pf-navitem" data-pf-action="cat:Design & Utility"><i data-lucide="palette"></i><span>Design & utility</span></button><span class="pf-side-title">Studio settings</span><button type="button" class="pf-navitem" data-pf-action="plans"><i data-lucide="crown"></i><span>Plans & pricing</span></button><button type="button" class="pf-navitem" data-pf-action="account"><i data-lucide="circle-user-round"></i><span>Account</span></button><button type="button" class="pf-navitem" data-pf-action="more"><i data-lucide="menu"></i><span>More</span></button><div class="pf-sidebar-note"><b>Local workspace</b>Images stay in your browser for local processing. Paid plans are coming soon.</div></aside><main id="top" class="flex-1 studio-glow"><div class="pf-welcome"><div><small>PIXELFIRE / WORKSPACE</small><h2>Welcome to your studio.</h2></div><span>50 tools</span></div><section class="pf-hero"><div><small>CREATE WITHOUT LIMITING YOUR IDEAS</small><h1>Your image. <span>Your studio.</span></h1><p>Convert, retouch and create with 50 image tools, a shared preview canvas and professional export controls.</p><div class="pf-hero-actions"><button type="button" data-pf-action="upload">Upload image</button><button type="button" data-pf-action="tools">Explore tools</button></div></div><svg class="pf-hero-art" viewBox="0 0 300 210" aria-hidden="true"><rect x="24" y="20" width="228" height="166" rx="16" fill="#173d4c" stroke="#5b9ca1" transform="rotate(-8 138 100)"/><rect x="48" y="21" width="240" height="168" rx="17" fill="#e9fbf6"/><rect x="60" y="32" width="216" height="112" rx="10" fill="#83cfbf"/><circle cx="219" cy="58" r="17" fill="#f7e8ba"/><path d="M60 132l68-74 39 42 24-22 85 66H60z" fill="#226c76"/><path d="M60 132l46-35 34 24 35-32 101 55H60z" fill="#154452"/><rect x="60" y="157" width="90" height="7" rx="4" fill="#226c76"/><rect x="60" y="170" width="130" height="5" rx="3" fill="#a3c7c4"/><rect x="12" y="131" width="78" height="68" rx="13" fill="#102d3c" stroke="#8debd6"/><path d="M25 153h52m-52 12h52m-52 12h52" stroke="#8debd6" stroke-width="2" stroke-linecap="round"/><circle cx="43" cy="153" r="5" fill="#8debd6"/><circle cx="64" cy="165" r="5" fill="#8debd6"/><circle cx="37" cy="177" r="5" fill="#8debd6"/></svg></section>
 
     <!-- Sleek Upgrade Promo Strip -->
     <div id="upgradeBanner" class="border-b border-indigo-500/20 bg-gradient-to-r from-indigo-600/10 via-purple-600/15 to-cyan-500/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-2 text-xs">
         <div class="flex items-center gap-2 text-slate-700 dark:text-slate-200">
           <span class="px-2 py-0.5 rounded-md bg-indigo-600 text-white text-[10px] font-bold uppercase tracking-wider">New</span>
-          <span><strong>40-tool studio preview</strong> — local tools available now; paid subscriptions are coming soon.</span>
+          <span><strong>50-tool studio preview</strong> — local tools available now; paid subscriptions are coming soon.</span>
         </div>
         <button onclick="openPricingModal()" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline inline-flex items-center gap-1">
           View Advance, Pro, Professional & Premium <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -249,22 +278,6 @@
 
     <!-- Hero Section + Featured Universal Converter & Upload Dropzone -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-8 sm:pt-12 sm:pb-10">
-      <div class="text-center max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-600 dark:text-indigo-300 text-xs font-semibold mb-4">
-          <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-          <span>All-in-One Format Converter + 40 Image Tools</span>
-        </div>
-
-        <h1 class="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.12]">
-          Professional Image Studio,
-          <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Built for Speed</span>
-        </h1>
-
-        <p class="mt-3.5 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
-          Convert any image between <strong>PNG, JPG, WebP, BMP, ICO, GIF, PDF & Base64</strong> in one unified converter, remove color-based backgrounds, enlarge up to 4X, build passport photos & 3D mockups — instantly in your browser.
-        </p>
-      </div>
-
       <!-- Hero Grid: Unified Dropzone + Spotlight Universal Format Converter Card -->
       <div class="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         <!-- Drag & Drop Upload Box -->
@@ -280,7 +293,7 @@
               Drop your image here, or <span class="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">browse files</span>
             </p>
             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Upload once & switch effortlessly across all 40 tools without re-uploading
+              Upload once & switch effortlessly across all 50 tools without re-uploading
             </p>
             <div class="mt-4 flex flex-wrap items-center justify-center gap-2.5">
               <button
@@ -310,7 +323,7 @@
                   <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
                   <p id="heroFileName" class="text-sm font-bold text-slate-900 dark:text-white truncate">image.png</p>
                 </div>
-                <p id="heroFileMeta" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Ready across all 40 tools</p>
+                <p id="heroFileMeta" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Ready across all 50 tools</p>
               </div>
             </div>
             <div class="flex items-center gap-2 shrink-0">
@@ -362,14 +375,14 @@
       </div>
     </section>
 
-    <!-- Category Filters & Mobile Search -->
+    <section class="pf-quick"><div class="pf-sectionhead"><div><h2>Quick access</h2><p>Jump back to a recent tool or start a new workflow.</p></div></div><div class="pf-quick-grid" id="pfQuick"></div></section><!-- Category Filters & Mobile Search -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-5">
       <div class="lg:hidden mb-3.5 relative">
         <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
         <input
           type="text"
           id="mobileSearchInput"
-          placeholder="Search 40 tools (converter, bg remove, passport, grid)..."
+          placeholder="Search 50 tools (converter, bg remove, passport, grid)..."
           class="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
         />
       </div>
@@ -377,14 +390,14 @@
       <div class="flex items-center justify-between gap-4">
         <div id="categoryPills" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1"></div>
         <span id="toolCountLabel" class="hidden sm:inline text-xs font-semibold text-slate-500 dark:text-slate-400 shrink-0">
-          Showing 40 tools
+          Showing 50 tools
         </span>
       </div>
     </section>
 
-    <!-- 40-Tool Interactive SaaS Grid -->
+    <!-- 50-Tool Interactive SaaS Grid -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5"></div>
+      <div class="pf-sectionhead"><div><h2>Explore the studio</h2><p>Choose a tool to edit your image.</p></div></div><div id="toolsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5"></div>
 
       <div id="emptySearchState" class="hidden text-center py-14">
         <div class="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-slate-900 text-slate-400 flex items-center justify-center mx-auto mb-3">
@@ -393,7 +406,7 @@
         <h3 class="text-base font-bold">No tools matched your search</h3>
         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Try searching "Converter", "AI", "Passport", or "Mockup".</p>
         <button onclick="resetFilters()" class="mt-4 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-500 transition">
-          Show all 40 tools
+          Show all 50 tools
         </button>
       </div>
     </section>
@@ -417,7 +430,7 @@
         <div id="inlinePricingGrid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5"></div>
       </div>
     </section>
-  </main>
+  </main></div>
 
   <!-- Footer -->
   <footer class="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-[#060914] py-6">
@@ -425,7 +438,7 @@
       <div class="flex items-center gap-2">
         <span class="font-display font-bold text-slate-800 dark:text-slate-200">PixelFire Studio Pro</span>
         <span>•</span>
-        <span>40-in-1 Professional Image Suite</span>
+        <span>50-in-1 Professional Image Suite</span>
       </div>
       <div class="flex items-center gap-4">
         <span class="inline-flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i> Local image processing</span>
@@ -478,7 +491,7 @@
           </div>
           <h3 class="font-display text-lg font-bold">Upload an image to begin</h3>
           <p class="text-sm text-slate-500 dark:text-slate-400 mt-1.5">
-            Drop your photo here or tap to browse. It stays loaded as you switch across all 40 tools.
+            Drop your photo here or tap to browse. It stays loaded as you switch across all 50 tools.
           </p>
           <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
             <button onclick="event.stopPropagation(); triggerFileUpload();" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-bold shadow-md hover:opacity-95 transition">
@@ -598,7 +611,7 @@
                 <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset
               </button>
               <button onclick="closeWorkspace()" class="py-2 px-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center gap-1.5 transition">
-                <i data-lucide="grid" class="w-3.5 h-3.5"></i> all 40 tools
+                <i data-lucide="grid" class="w-3.5 h-3.5"></i> all 50 tools
               </button>
             </div>
           </div>
@@ -658,7 +671,7 @@
 
   <!-- ===================================================================== -->
   <!-- Checkout deliberately unavailable until a verified payment backend is configured. -->
-<!-- Toast Container -->
+<nav class="pf-bottom" aria-label="Mobile navigation"><button type="button" data-pf-action="home" aria-current="true"><i data-lucide="house"></i>Home</button><button type="button" data-pf-action="tools" aria-current="false"><i data-lucide="layout-grid"></i>Tools</button><button type="button" data-pf-action="upload" aria-current="false"><i data-lucide="image-plus"></i>Create</button><button type="button" data-pf-action="plans" aria-current="false"><i data-lucide="crown"></i>Plans</button><button type="button" data-pf-action="more" aria-current="false"><i data-lucide="menu"></i>More</button></nav><div id="pfDrawerOverlay" class="pf-drawer-overlay" hidden><aside id="pfDrawer" class="pf-drawer" role="dialog" aria-modal="true" aria-labelledby="pfDrawerTitle" tabindex="-1"><div class="pf-drawer-header"><div><b id="pfDrawerTitle">Studio menu</b><p>Workspace, tools and settings</p></div><button id="pfDrawerClose" type="button" class="pf-close" aria-label="Close menu"><i data-lucide="x"></i></button></div><div class="pf-drawer-scroll"><span class="pf-side-title">Workspace</span><button type="button" class="pf-navitem" data-pf-action="home"><i data-lucide="house"></i><span>Home</span></button><button type="button" class="pf-navitem" data-pf-action="upload"><i data-lucide="image-plus"></i><span>Upload image</span></button><button type="button" class="pf-navitem" data-pf-action="plans"><i data-lucide="crown"></i><span>Plans & pricing</span></button><button type="button" class="pf-navitem" data-pf-action="account"><i data-lucide="circle-user-round"></i><span>Account</span></button><button type="button" class="pf-navitem" data-pf-action="theme"><i data-lucide="sun-moon"></i><span>Switch theme</span></button><span class="pf-side-title">All tools</span><input type="search" class="pf-drawer-search" id="pfDrawerSearch" placeholder="Find any of the 50 tools..." aria-label="Search menu tools"><div class="pf-drawer-tools" id="pfDrawerTools"></div><span class="pf-side-title">Help & information</span><a class="pf-navitem" href="/faq.html"><i data-lucide="circle-help"></i> Help & FAQ</a><a class="pf-navitem" href="/contact.html"><i data-lucide="mail"></i> Contact</a><a class="pf-navitem" href="/privacy.html"><i data-lucide="shield-check"></i> Privacy</a><a class="pf-navitem" href="/terms.html"><i data-lucide="file-text"></i> Terms</a></div></aside></div><!-- Toast Container -->
   <div id="toastContainer" class="fixed bottom-5 right-5 z-[70] flex flex-col gap-2 pointer-events-none max-w-xs w-full"></div>
 
   <!-- ===================================================================== -->
@@ -953,7 +966,7 @@
     // =========================================================================
     // 2. GLOBAL STATE
     // =========================================================================
-    const EXTRA_TOOLS = [{"id":"mono","name":"Grayscale Studio","category":"Edit & Effects","icon":"circle-half","desc":"Monochrome mix with adjustable intensity.","label":"Amount","initial":100,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"sepia-pro","name":"Vintage Sepia","category":"Edit & Effects","icon":"camera","desc":"Warm archival tones with variable strength.","label":"Strength","initial":80,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"negative","name":"Negative Image","category":"Edit & Effects","icon":"contrast","desc":"Invert RGB channels at adjustable intensity.","label":"Amount","initial":100,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"threshold","name":"Black & White Threshold","category":"Edit & Effects","icon":"contrast","desc":"Convert photos into high-contrast two-tone art.","label":"Threshold","initial":128,"min":0,"max":255,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"posterize","name":"Posterize Studio","category":"Edit & Effects","icon":"palette","desc":"Reduce tonal levels for graphic poster artwork.","label":"Levels","initial":5,"min":2,"max":16,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"duotone","name":"Duotone Mixer","category":"Edit & Effects","icon":"blend","desc":"Map brightness into two editable colors.","label":"Strength","initial":100,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"sharpen-pro","name":"Detail Sharpen","category":"Edit & Effects","icon":"focus","desc":"Enhance local edge detail with a convolution filter.","label":"Strength","initial":35,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"solarize","name":"Solarize Effect","category":"Edit & Effects","icon":"sun","desc":"Invert tones above a selectable threshold.","label":"Threshold","initial":128,"min":0,"max":255,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"edge-map","name":"Edge Detection","category":"Edit & Effects","icon":"scan-line","desc":"Extract image edges with Sobel luminance gradients.","label":"Sensitivity","initial":70,"min":10,"max":200,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"emboss","name":"Emboss Relief","category":"Edit & Effects","icon":"layers","desc":"Create directional relief from local pixel gradients.","label":"Strength","initial":60,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"denoise","name":"Noise Smoothing","category":"Edit & Effects","icon":"waves","desc":"Reduce fine noise using a neighborhood mean filter.","label":"Strength","initial":45,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"gamma","name":"Gamma Correction","category":"Edit & Effects","icon":"sun","desc":"Adjust midtone response while preserving endpoints.","label":"Gamma × 100","initial":120,"min":25,"max":300,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"channel","name":"RGB Channel Viewer","category":"Design & Utility","icon":"sliders","desc":"Inspect red, green or blue intensity as grayscale.","label":"Channel","initial":1,"min":1,"max":3,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"replace-color","name":"Color Replacement","category":"Edit & Effects","icon":"paintbrush","desc":"Replace nearby colors with a selected new color.","label":"Tolerance","initial":45,"min":0,"max":180,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"opacity","name":"Transparency Studio","category":"Edit & Effects","icon":"droplet","desc":"Reduce image opacity for compositing and overlays.","label":"Opacity","initial":75,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"padding","name":"Canvas Padding","category":"Design & Utility","icon":"square","desc":"Add configurable canvas margins and background.","label":"Margin","initial":60,"min":0,"max":250,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":false},{"id":"reflection","name":"Mirror Reflection","category":"Design & Utility","icon":"flip-vertical","desc":"Create a vertically faded mirror reflection.","label":"Reflection height %","initial":35,"min":10,"max":70,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":false},{"id":"outline","name":"Image Outline","category":"Design & Utility","icon":"square-dashed","desc":"Create a colored outline around transparent image edges.","label":"Width","initial":6,"min":1,"max":18,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"halftone","name":"Halftone Print","category":"Edit & Effects","icon":"grid-3x3","desc":"Turn photos into printable dot-screen artwork.","label":"Dot spacing","initial":10,"min":4,"max":32,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"thumbnail","name":"Thumbnail Fit Studio","category":"Convert & Optimize","icon":"image","desc":"Fit an image into a fixed 16:9 thumbnail without stretching.","label":"Padding %","initial":5,"min":0,"max":20,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":false}];
+    const EXTRA_TOOLS = [{"id":"mono","name":"Grayscale Studio","category":"Edit & Effects","icon":"circle-half","desc":"Monochrome mix with adjustable intensity.","label":"Amount","initial":100,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"sepia-pro","name":"Vintage Sepia","category":"Edit & Effects","icon":"camera","desc":"Warm archival tones with variable strength.","label":"Strength","initial":80,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"negative","name":"Negative Image","category":"Edit & Effects","icon":"contrast","desc":"Invert RGB channels at adjustable intensity.","label":"Amount","initial":100,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"threshold","name":"Black & White Threshold","category":"Edit & Effects","icon":"contrast","desc":"Convert photos into high-contrast two-tone art.","label":"Threshold","initial":128,"min":0,"max":255,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"posterize","name":"Posterize Studio","category":"Edit & Effects","icon":"palette","desc":"Reduce tonal levels for graphic poster artwork.","label":"Levels","initial":5,"min":2,"max":16,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"duotone","name":"Duotone Mixer","category":"Edit & Effects","icon":"blend","desc":"Map brightness into two editable colors.","label":"Strength","initial":100,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"sharpen-pro","name":"Detail Sharpen","category":"Edit & Effects","icon":"focus","desc":"Enhance local edge detail with a convolution filter.","label":"Strength","initial":35,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"solarize","name":"Solarize Effect","category":"Edit & Effects","icon":"sun","desc":"Invert tones above a selectable threshold.","label":"Threshold","initial":128,"min":0,"max":255,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"edge-map","name":"Edge Detection","category":"Edit & Effects","icon":"scan-line","desc":"Extract image edges with Sobel luminance gradients.","label":"Sensitivity","initial":70,"min":10,"max":200,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"emboss","name":"Emboss Relief","category":"Edit & Effects","icon":"layers","desc":"Create directional relief from local pixel gradients.","label":"Strength","initial":60,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"denoise","name":"Noise Smoothing","category":"Edit & Effects","icon":"waves","desc":"Reduce fine noise using a neighborhood mean filter.","label":"Strength","initial":45,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"gamma","name":"Gamma Correction","category":"Edit & Effects","icon":"sun","desc":"Adjust midtone response while preserving endpoints.","label":"Gamma × 100","initial":120,"min":25,"max":300,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"channel","name":"RGB Channel Viewer","category":"Design & Utility","icon":"sliders","desc":"Inspect red, green or blue intensity as grayscale.","label":"Channel","initial":1,"min":1,"max":3,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"replace-color","name":"Color Replacement","category":"Edit & Effects","icon":"paintbrush","desc":"Replace nearby colors with a selected new color.","label":"Tolerance","initial":45,"min":0,"max":180,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"opacity","name":"Transparency Studio","category":"Edit & Effects","icon":"droplet","desc":"Reduce image opacity for compositing and overlays.","label":"Opacity","initial":75,"min":0,"max":100,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"padding","name":"Canvas Padding","category":"Design & Utility","icon":"square","desc":"Add configurable canvas margins and background.","label":"Margin","initial":60,"min":0,"max":250,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":false},{"id":"reflection","name":"Mirror Reflection","category":"Design & Utility","icon":"flip-vertical","desc":"Create a vertically faded mirror reflection.","label":"Reflection height %","initial":35,"min":10,"max":70,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":false},{"id":"outline","name":"Image Outline","category":"Design & Utility","icon":"square-dashed","desc":"Create a colored outline around transparent image edges.","label":"Width","initial":6,"min":1,"max":18,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"halftone","name":"Halftone Print","category":"Edit & Effects","icon":"grid-3x3","desc":"Turn photos into printable dot-screen artwork.","label":"Dot spacing","initial":10,"min":4,"max":32,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":true},{"id":"thumbnail","name":"Thumbnail Fit Studio","category":"Convert & Optimize","icon":"image","desc":"Fit an image into a fixed 16:9 thumbnail without stretching.","label":"Padding %","initial":5,"min":0,"max":20,"tier":"FREE","color":"from-indigo-500 to-violet-600","supportsCompare":false},{"id":"film-grain","name":"Film Grain Studio","category":"Edit & Effects","icon":"film","desc":"Add adjustable, deterministic photographic grain.","label":"Grain","initial":25,"min":0,"max":100,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true},{"id":"channel-swap","name":"Channel Swap","category":"Edit & Effects","icon":"shuffle","desc":"Remap RGB channels to create experimental colors.","label":"Channel rotation","initial":1,"min":1,"max":2,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true},{"id":"chromatic","name":"Chromatic Aberration","category":"Edit & Effects","icon":"scan","desc":"Offset red and blue channels for an optical glitch.","label":"Offset (px)","initial":8,"min":0,"max":30,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true},{"id":"auto-levels","name":"Auto Levels","category":"Edit & Effects","icon":"chart-no-axes-column","desc":"Stretch luminance range using image percentiles.","label":"Strength","initial":80,"min":0,"max":100,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true},{"id":"shadow-lift","name":"Shadow Recovery","category":"Edit & Effects","icon":"sunrise","desc":"Lift darker tones with a smooth tonal curve.","label":"Lift","initial":45,"min":0,"max":100,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true},{"id":"highlight-rolloff","name":"Highlight Softening","category":"Edit & Effects","icon":"sunset","desc":"Compress bright tones with a smooth highlight curve.","label":"Strength","initial":40,"min":0,"max":100,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true},{"id":"mirror-tile","name":"Mirror Tile Studio","category":"Design & Utility","icon":"grid-2x2","desc":"Build a symmetrical four-panel image tile.","label":"Tile scale %","initial":75,"min":25,"max":100,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":false},{"id":"contact-sheet","name":"Contact Sheet Maker","category":"Design & Utility","icon":"layout-grid","desc":"Create a numbered grid of repeated photo proofs.","label":"Columns","initial":3,"min":2,"max":5,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":false},{"id":"zoom-blur","name":"Radial Zoom Blur","category":"Edit & Effects","icon":"aperture","desc":"Blend scaled image layers around the center.","label":"Intensity","initial":25,"min":0,"max":80,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true},{"id":"gradient-overlay","name":"Gradient Overlay","category":"Edit & Effects","icon":"blend","desc":"Overlay a two-color gradient with adjustable opacity.","label":"Opacity","initial":35,"min":0,"max":100,"tier":"FREE","color":"from-teal-500 to-blue-600","supportsCompare":true}];
     TOOLS.push(...EXTRA_TOOLS);
     const extra = id => EXTRA_TOOLS.find(t=>t.id===id);
     const state = {
@@ -1518,7 +1531,7 @@
       bar.classList.add('flex');
       document.getElementById('heroThumb').src = previewUrl;
       document.getElementById('heroFileName').textContent = name;
-      document.getElementById('heroFileMeta').textContent = `${img.naturalWidth} × ${img.naturalHeight} px • ${formatBytes(size)} • Ready across all 40 tools`;
+      document.getElementById('heroFileMeta').textContent = `${img.naturalWidth} × ${img.naturalHeight} px • ${formatBytes(size)} • Ready across all 50 tools`;
 
       if (state.currentToolId) initToolWorkspace();
     }
@@ -1654,7 +1667,7 @@
     }
 
     // =========================================================================
-    // 9. DEFAULT PARAMETERS FOR all 40 tools
+    // 9. DEFAULT PARAMETERS FOR all 50 tools
     // =========================================================================
     function initDefaultParams(toolId) {
       const e=extra(toolId);if(e){state.toolParams={amount:e.initial,color:'#ffffff',second:'#6366f1'};return;}
@@ -1750,7 +1763,7 @@
     // 10. TOOL CONTROLS PANEL RENDERER
     // =========================================================================
     function renderToolControls(id) {
-      const e=extra(id);if(e){const p=state.toolParams;const box=document.getElementById('toolControlsContainer');box.innerHTML='<div class="p-3 rounded-xl bg-indigo-500/10 text-xs text-indigo-500">'+e.desc+'</div>'+sliderHTML(e.label,'amount',p.amount,e.min,e.max,'');if(['duotone','replace-color','padding','outline','halftone','thumbnail'].includes(id)){const colors=id==='outline'?[['second','Outline color']]:['padding','thumbnail'].includes(id)?[['color','Background color']]:[['color',id==='replace-color'?'Source color':'Color A / background'],['second',id==='replace-color'?'Replacement color':'Color B / foreground']];for(const [key,label] of colors){const row=document.createElement('label');row.className='flex items-center justify-between text-xs font-semibold';row.textContent=label;const c=document.createElement('input');c.type='color';c.value=p[key];c.addEventListener('input',()=>updateParam(key,c.value));row.append(c);box.append(row)}}return;}
+      const e=extra(id);if(e){const p=state.toolParams;const box=document.getElementById('toolControlsContainer');box.innerHTML='<div class="p-3 rounded-xl bg-indigo-500/10 text-xs text-indigo-500">'+e.desc+'</div>'+sliderHTML(e.label,'amount',p.amount,e.min,e.max,'');if(['duotone','replace-color','padding','outline','halftone','thumbnail','gradient-overlay','contact-sheet'].includes(id)){const colors=id==='outline'?[['second','Outline color']]:['padding','thumbnail','contact-sheet'].includes(id)?[['color','Background color']]:[['color',id==='replace-color'?'Source color':'Color A / background'],['second',id==='replace-color'?'Replacement color':'Color B / foreground']];for(const [key,label] of colors){const row=document.createElement('label');row.className='flex items-center justify-between text-xs font-semibold';row.textContent=label;const c=document.createElement('input');c.type='color';c.value=p[key];c.addEventListener('input',()=>updateParam(key,c.value));row.append(c);box.append(row)}}return;}
       const el = document.getElementById('toolControlsContainer');
       const p = state.toolParams;
 
@@ -2259,7 +2272,7 @@
     }
 
     // =========================================================================
-    // 11. CORE CANVAS PROCESSING ENGINE (all 40 tools)
+    // 11. CORE CANVAS PROCESSING ENGINE (all 50 tools)
     // =========================================================================
     function scheduleRender(immediate = false) {
       state.outputBlob=null;renderVersion++;
@@ -2285,15 +2298,28 @@ function renderExtra(id,img,p,sw,sh){
  if(id==='padding'){let m=a;c.width=w+2*m;c.height=h+2*m;x.fillStyle=p.color;x.fillRect(0,0,c.width,c.height);x.drawImage(img,m,m,w,h);return}
  if(id==='thumbnail'){c.width=1280;c.height=720;x.fillStyle=p.color;x.fillRect(0,0,1280,720);const m=a/100,r=Math.min(1280*(1-2*m)/w,720*(1-2*m)/h);x.drawImage(img,(1280-w*r)/2,(720-h*r)/2,w*r,h*r);return}
  if(id==='reflection'){const rh=Math.max(1,Math.round(h*a/100));const tmp=document.createElement('canvas');tmp.width=w;tmp.height=rh;const tx=tmp.getContext('2d');tx.translate(0,h);tx.scale(1,-1);tx.drawImage(img,0,0,w,h);tx.setTransform(1,0,0,1,0,0);tx.globalCompositeOperation='destination-in';const g=tx.createLinearGradient(0,0,0,rh);g.addColorStop(0,'rgba(0,0,0,.8)');g.addColorStop(1,'rgba(0,0,0,0)');tx.fillStyle=g;tx.fillRect(0,0,w,rh);c.height=h+rh;x.drawImage(img,0,0,w,h);x.drawImage(tmp,0,h);return}
+
+ if(id==='mirror-tile'){let tw=Math.max(1,Math.round(w*a/100)),th=Math.max(1,Math.round(h*a/100));const cap=Math.min(1,4096/(2*Math.max(tw,th)),Math.sqrt(12000000/(4*tw*th)));tw=Math.max(1,Math.round(tw*cap));th=Math.max(1,Math.round(th*cap));c.width=2*tw;c.height=2*th;x.imageSmoothingQuality='high';for(let yy=0;yy<2;yy++)for(let xx=0;xx<2;xx++){x.save();x.translate(xx?2*tw:0,yy?2*th:0);x.scale(xx?-1:1,yy?-1:1);x.drawImage(img,0,0,tw,th);x.restore()}return}
+ if(id==='contact-sheet'){const cols=a,rows=2,gap=14,tw=Math.floor((1440-gap*(cols+1))/cols),th=Math.max(1,Math.round(tw*Math.min(h/w,1.4))),lh=28;c.width=1440;c.height=gap+rows*(th+lh+gap);x.fillStyle=p.color;x.fillRect(0,0,c.width,c.height);x.imageSmoothingQuality='high';x.font='bold 14px Arial';for(let i=0;i<cols*rows;i++){const ox=gap+(i%cols)*(tw+gap),oy=gap+Math.floor(i/cols)*(th+lh+gap),r=Math.min(tw/w,th/h);x.fillStyle='#e2e8f0';x.fillRect(ox,oy,tw,th);x.drawImage(img,ox+(tw-w*r)/2,oy+(th-h*r)/2,w*r,h*r);x.fillStyle='#64748b';x.fillText('PROOF '+String(i+1).padStart(2,'0'),ox,oy+th+19)}return}
+ if(id==='zoom-blur'){x.drawImage(img,0,0,w,h);if(a>0){x.save();for(let j=1;j<=12;j++){let f=1+(a/100)*j/12;x.globalAlpha=1/(j+1);x.drawImage(img,(w-w*f)/2,(h-h*f)/2,w*f,h*f)}x.restore()}return}
+ if(id==='gradient-overlay'){x.drawImage(img,0,0,w,h);x.save();x.globalCompositeOperation='source-atop';x.globalAlpha=a/100;let g=x.createLinearGradient(0,0,w,h);g.addColorStop(0,p.color);g.addColorStop(1,p.second);x.fillStyle=g;x.fillRect(0,0,w,h);x.restore();return}
+
  x.drawImage(img,0,0,w,h);
  if(id==='sharpen-pro'){applySharpen(x,w,h,a/100);return}
  if(id==='halftone'){const src=x.getImageData(0,0,w,h).data;x.fillStyle=p.color;x.fillRect(0,0,w,h);x.fillStyle=p.second;for(let yy=0;yy<h;yy+=a)for(let xx=0;xx<w;xx+=a){const k=(Math.min(h-1,yy+Math.floor(a/2))*w+Math.min(w-1,xx+Math.floor(a/2)))*4;const l=.299*src[k]+.587*src[k+1]+.114*src[k+2];x.beginPath();x.arc(xx+a/2,yy+a/2,a*.52*Math.sqrt(1-l/255)*src[k+3]/255,0,Math.PI*2);x.fill()}return}
  if(id==='outline'){const tmp=document.createElement('canvas');tmp.width=w;tmp.height=h;const tx=tmp.getContext('2d');tx.drawImage(c,0,0);tx.globalCompositeOperation='source-in';tx.fillStyle=p.second;tx.fillRect(0,0,w,h);c.width=w+2*a;c.height=h+2*a;for(let t=0;t<24;t++){let r=t*Math.PI/12;x.drawImage(tmp,a+Math.cos(r)*a,a+Math.sin(r)*a)}x.drawImage(img,a,a,w,h);return}
- const im=x.getImageData(0,0,w,h),d=im.data,sp=['edge-map','emboss','denoise'].includes(id)?new Uint8ClampedArray(d):d;
+ const im=x.getImageData(0,0,w,h),d=im.data,sp=['edge-map','emboss','denoise','chromatic'].includes(id)?new Uint8ClampedArray(d):d;
  const pos=(xx,yy)=>4*(Math.max(0,Math.min(h-1,yy))*w+Math.max(0,Math.min(w-1,xx)));
  const lum=(j)=>.299*sp[j]+.587*sp[j+1]+.114*sp[j+2];
+ let low=0,high=255;if(id==='auto-levels'){const hist=new Uint32Array(256);let count=0;for(let j=0;j<sp.length;j+=4)if(sp[j+3]){hist[Math.round(lum(j))]++;count++}let z=0;for(let j=0;j<256;j++){z+=hist[j];if(z>=count*.01){low=j;break}}z=0;for(let j=255;j>=0;j--){z+=hist[j];if(z>=count*.01){high=j;break}}if(high<=low){low=0;high=255}}
  for(let i=0;i<d.length;i+=4){let r=sp[i],g=sp[i+1],b=sp[i+2],l=.299*r+.587*g+.114*b,n=a/100,rr=r,gg=g,bb=b;
  switch(id){
+ case 'film-grain':{let seed=Math.imul(i+1,1664525)+1013904223;seed^=seed>>>16;seed=Math.imul(seed,2246822519);let noise=((seed>>>0)/4294967295-.5)*a*1.6;rr=r+noise;gg=g+noise;bb=b+noise;break}
+ case 'channel-swap':if(a===1){rr=g;gg=b;bb=r}else{rr=b;gg=r;bb=g}break;
+ case 'chromatic':{let px=i/4%w,py=Math.floor(i/4/w);rr=sp[pos(px-a,py)];bb=sp[pos(px+a,py)+2];break}
+ case 'auto-levels':{let v=clamp((l-low)*255/(high-low));let delta=(v-l)*n;rr=r+delta;gg=g+delta;bb=b+delta;break}
+ case 'shadow-lift':{let delta=255*n*.8*(l/255)*(1-l/255)**2;rr=r+delta;gg=g+delta;bb=b+delta;break}
+ case 'highlight-rolloff':{let delta=255*n*.5*Math.max(0,(l/255-.5)*2)**2;rr=r-delta;gg=g-delta;bb=b-delta;break}
  case 'mono':rr=mix(r,l,n);gg=mix(g,l,n);bb=mix(b,l,n);break;
  case 'sepia-pro':rr=mix(r,clamp(.393*r+.769*g+.189*b),n);gg=mix(g,clamp(.349*r+.686*g+.168*b),n);bb=mix(b,clamp(.272*r+.534*g+.131*b),n);break;
  case 'negative':rr=mix(r,255-r,n);gg=mix(g,255-g,n);bb=mix(b,255-b,n);break;
@@ -3344,5 +3370,19 @@ el("authForm").addEventListener("submit",async e=>{e.preventDefault();if(!ready(
 el("authForgot").addEventListener("click",async()=>{if(!ready())return;const email=el("authEmail").value.trim();if(!email){message("Enter your email address first.");return;}try{await auth.sendPasswordResetEmail(email);message("Password reset link sent. Check your inbox.");}catch(err){message(err.message||"Could not send reset email.");}});
 el("authLogout").addEventListener("click",async()=>{if(!ready())return;try{await auth.signOut();message("You are logged out.");setMode("login");}catch(err){message(err.message||"Could not log out.");}});
 if(window.firebase)ready();
+})();</script><script>
+(()=>{'use strict';
+const d=document,overlay=d.getElementById('pfDrawerOverlay'),drawer=d.getElementById('pfDrawer'),search=d.getElementById('pfDrawerSearch'),list=d.getElementById('pfDrawerTools'),quick=d.getElementById('pfQuick');let lastFocus=null,previousOverflow='',recent=[];try{const a=JSON.parse(localStorage.getItem('pf-studio50-recent')||'[]');if(Array.isArray(a))recent=a.filter(id=>TOOLS.some(t=>t.id===id)).slice(0,8)}catch{}
+const refreshIcons=()=>window.lucide?.createIcons();
+function makeTool(t){let b=d.createElement('button');b.type='button';b.dataset.pfTool=t.id;const i=d.createElement('i');i.dataset.lucide=t.icon;const name=d.createElement('span');name.textContent=t.name;b.append(i,name);return b}
+function refreshQuick(){quick.replaceChildren();const ids=recent.length?recent.slice(0,4):['universal-converter','bg-remove','ai-enhance','resize'];ids.forEach(id=>{const t=TOOLS.find(x=>x.id===id);if(t)quick.append(makeTool(t))});refreshIcons()}
+function refreshMenu(){list.replaceChildren();const q=search.value.trim().toLowerCase();const ts=TOOLS.filter(t=>(t.name+' '+t.category+' '+t.desc).toLowerCase().includes(q));ts.forEach(t=>list.append(makeTool(t)));if(!ts.length){const p=d.createElement('p');p.textContent='No matching tools.';p.className='text-xs p-3';list.append(p)}refreshIcons()}
+function openMenu(){if(!overlay.hidden)return;lastFocus=d.activeElement;previousOverflow=d.body.style.overflow;overlay.hidden=false;d.body.style.overflow='hidden';d.querySelectorAll('[aria-controls="pfDrawer"]').forEach(b=>b.setAttribute('aria-expanded','true'));search.value='';refreshMenu();d.getElementById('pfDrawerClose').focus()}
+function closeMenu(){if(overlay.hidden)return;overlay.hidden=true;d.body.style.overflow=previousOverflow;d.querySelectorAll('[aria-controls="pfDrawer"]').forEach(b=>b.setAttribute('aria-expanded','false'));if(lastFocus?.isConnected)lastFocus.focus()}
+function mark(action){d.querySelectorAll('.pf-side button,.pf-bottom button').forEach(b=>b.setAttribute('aria-current',String(b.dataset.pfAction===action)))}
+function route(action){if(action==='more'){openMenu();return}closeMenu();if(action==='theme'){toggleTheme();return}if(action==='plans'){openPricingModal();return}if(action==='account'){const b=d.getElementById('authProfile');(b.hidden?d.getElementById('authOpen'):b).click();return}if(action==='upload'){triggerFileUpload();return}closeWorkspace();if(action==='recent'){mark(action);d.getElementById('pfQuick').scrollIntoView({block:'start'});return}if(action==='home'){resetFilters();mark(action);window.scrollTo({top:0,behavior:'smooth'});return}resetFilters();if(action.startsWith('cat:'))selectCategory(action.slice(4));mark(action);d.getElementById('categoryPills').scrollIntoView({block:'start'})}
+const originalOpen=openTool;openTool=function(id){if(!TOOLS.some(t=>t.id===id))return;originalOpen(id);recent=[id,...recent.filter(x=>x!==id)].slice(0,8);try{localStorage.setItem('pf-studio50-recent',JSON.stringify(recent))}catch{}refreshQuick()};
+d.addEventListener('click',e=>{const t=e.target.closest('[data-pf-tool]'),a=e.target.closest('[data-pf-action]');if(t){closeMenu();openTool(t.dataset.pfTool)}else if(a)route(a.dataset.pfAction)});
+search.addEventListener('input',refreshMenu);d.getElementById('pfDrawerClose').addEventListener('click',closeMenu);overlay.addEventListener('click',e=>{if(e.target===overlay)closeMenu()});d.addEventListener('keydown',e=>{if(overlay.hidden)return;if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeMenu()}else if(e.key==='Tab'){const els=[...drawer.querySelectorAll('button,input,a[href]')].filter(x=>!x.hidden&&!x.disabled);if(!els.length)return;if(e.shiftKey&&d.activeElement===els[0]){e.preventDefault();els.at(-1).focus()}else if(!e.shiftKey&&d.activeElement===els.at(-1)){e.preventDefault();els[0].focus()}}},true);mark('home');refreshQuick();
 })();</script></body>
 </html>
