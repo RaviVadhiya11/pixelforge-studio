@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /docnexa-admin/
 
 Sitemap: https://pixelfirestudio.in/sitemap.xml
